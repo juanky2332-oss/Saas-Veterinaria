@@ -1,0 +1,8 @@
+# pnpm v10 bloquea por defecto los scripts de build nativos. Aprobamos los necesarios:
+#   sharp -> optimización de imágenes de Next · unrs-resolver -> resolver de ESLint
+allowBuilds:
+  sharp: true
+  unrs-resolver: true
+onlyBuiltDependencies:
+  - sharp
+  - unrs-resolver
