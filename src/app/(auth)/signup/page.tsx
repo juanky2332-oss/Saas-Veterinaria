@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Mail, CheckCircle2, PawPrint, Check, Star } from "lucide-react";
+import { PawPrint, Check, Star, Eye, EyeOff } from "lucide-react";
 
 const PERKS = [
   "Agenda y citas online desde el día 1",
@@ -18,10 +18,10 @@ const PERKS = [
 ];
 
 export default function SignupPage() {
-  const [email, setEmail]       = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading]   = useState(false);
-  const [enviado, setEnviado]   = useState(false);
+  const [email, setEmail]         = useState("");
+  const [password, setPassword]   = useState("");
+  const [showPass, setShowPass]   = useState(false);
+  const [loading, setLoading]     = useState(false);
   const router  = useRouter();
   const supabase = createClient();
 
@@ -32,25 +32,31 @@ export default function SignupPage() {
       return;
     }
     setLoading(true);
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=/onboarding`,
-      },
+
+    // Crear usuario con email pre-confirmado (sin necesidad de clic en email)
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
     });
-    if (error) {
-      toast.error(error.message.includes("registered") ? "Ese correo ya tiene cuenta. Inicia sesión." : "No se pudo crear la cuenta. Inténtalo de nuevo.");
+    const json = await res.json();
+
+    if (!res.ok) {
+      toast.error(json.error ?? "No se pudo crear la cuenta.");
       setLoading(false);
       return;
     }
-    if (data.session) {
-      router.push("/onboarding");
-      router.refresh();
+
+    // Login inmediato tras crear la cuenta
+    const { error: loginError } = await supabase.auth.signInWithPassword({ email, password });
+    if (loginError) {
+      toast.error("Cuenta creada pero no se pudo iniciar sesión. Intenta entrar manualmente.");
+      router.push("/login");
       return;
     }
-    setEnviado(true);
-    setLoading(false);
+
+    router.push("/onboarding");
+    router.refresh();
   }
 
   return (
@@ -62,8 +68,8 @@ export default function SignupPage() {
 
         <div className="relative z-10">
           <Link href="/" className="flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-[13px] bg-white/15 backdrop-blur text-white text-xl font-display font-extrabold border border-white/20">
-              V
+            <span className="flex h-11 w-11 items-center justify-center rounded-[13px] bg-white/15 backdrop-blur border border-white/20">
+              <PawPrint size={22} className="text-white" strokeWidth={2} />
             </span>
             <span className="text-2xl font-display font-extrabold text-white">Veteriblandenguer</span>
           </Link>
@@ -108,13 +114,12 @@ export default function SignupPage() {
         </div>
       </div>
 
-      {/* Panel derecho — formulario */}
+      {/* Panel derecho */}
       <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 bg-[var(--bg)]">
-        {/* Logo mobile */}
         <div className="lg:hidden mb-8">
           <Link href="/" className="inline-flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[var(--brand)] text-white text-xl font-display font-bold shadow-[var(--shadow-card)]">
-              V
+            <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[var(--brand)] text-white shadow-[var(--shadow-card)]">
+              <PawPrint size={20} strokeWidth={2} />
             </span>
             <span className="text-2xl font-display font-bold text-[var(--text)]">Veteriblandenguer</span>
           </Link>
@@ -126,40 +131,53 @@ export default function SignupPage() {
               <PawPrint size={12} /> 10 días gratis · sin tarjeta
             </span>
             <h1 className="font-display text-2xl font-extrabold text-[var(--text)]">Crea tu veterinaria</h1>
-            <p className="mt-1.5 text-sm text-[var(--text-soft)]">Empieza gratis hoy. Configura tu clínica en minutos.</p>
+            <p className="mt-1.5 text-sm text-[var(--text-soft)]">Empieza gratis hoy. Acceso inmediato, sin confirmar email.</p>
           </div>
 
           <div className="rounded-[18px] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[var(--shadow-card)]">
-            {!enviado ? (
-              <form onSubmit={handleSignup} className="space-y-4">
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Correo electrónico</Label>
-                  <Input id="email" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="tu@veterinaria.com" />
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="password">Contraseña</Label>
-                  <Input id="password" type="password" autoComplete="new-password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Mínimo 8 caracteres" />
-                </div>
-                <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? "Creando tu veterinaria…" : "Crear cuenta gratis"}
-                </Button>
-                <p className="text-center text-xs text-[var(--text-soft)]">
-                  Al continuar aceptas los términos y la política de privacidad.
-                </p>
-              </form>
-            ) : (
-              <div className="text-center py-4 space-y-3">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--exito-tint)] mx-auto">
-                  <CheckCircle2 size={24} strokeWidth={1.75} className="text-[var(--exito)]" />
-                </div>
-                <h3 className="font-display font-bold text-[var(--text)]">Confirma tu correo</h3>
-                <p className="text-sm text-[var(--text-soft)] flex flex-wrap items-center justify-center gap-1.5">
-                  <Mail size={14} /> Te hemos enviado un enlace a{" "}
-                  <strong className="text-[var(--text)]">{email}</strong>.
-                </p>
-                <p className="text-xs text-[var(--text-soft)]">Haz clic en él para activar tu cuenta y configurar tu veterinaria.</p>
+            <form onSubmit={handleSignup} className="space-y-4">
+              <div className="space-y-1.5">
+                <Label htmlFor="email">Correo electrónico</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="tu@veterinaria.com"
+                />
               </div>
-            )}
+              <div className="space-y-1.5">
+                <Label htmlFor="password">Contraseña</Label>
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPass ? "text" : "password"}
+                    autoComplete="new-password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Mínimo 8 caracteres"
+                    className="pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPass((v) => !v)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-faint)] hover:text-[var(--text-soft)] transition-colors"
+                    tabIndex={-1}
+                  >
+                    {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
+              </div>
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? "Creando tu veterinaria…" : "Crear cuenta gratis →"}
+              </Button>
+              <p className="text-center text-xs text-[var(--text-soft)]">
+                Al continuar aceptas los términos y la política de privacidad.
+              </p>
+            </form>
           </div>
 
           <p className="mt-6 text-center text-sm text-[var(--text-soft)]">
