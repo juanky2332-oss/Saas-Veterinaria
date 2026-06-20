@@ -3,7 +3,7 @@ import { getOrgIdOrNull } from "@/lib/auth/org";
 import { Header } from "@/components/layout/header";
 import { CrmKanban, type Stage, type Opportunity } from "@/components/modules/crm/crm-kanban";
 
-export const metadata = { title: "CRM — Clinicomatic" };
+export const metadata = { title: "CRM — Veteriblandenguer" };
 
 export default async function CrmPage() {
   const supabase = await createClient();

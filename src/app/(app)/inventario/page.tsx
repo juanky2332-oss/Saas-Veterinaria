@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Header } from "@/components/layout/header";
 import { InventarioView } from "@/components/modules/inventario/inventario-view";
 
-export const metadata = { title: "Inventario — Clinicomatic" };
+export const metadata = { title: "Inventario — Veteriblandenguer" };
 
 export default async function InventarioPage() {
   const supabase = await createClient();

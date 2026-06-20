@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { normalizarAgente, type WhatsappIntegrationConfig } from "@/lib/whatsapp/agente";
 import { WhatsappConfigClient } from "./whatsapp-config-client";
 
-export const metadata = { title: "WhatsApp — Clinicomatic" };
+export const metadata = { title: "WhatsApp — Veteriblandenguer" };
 
 export default async function WhatsappConfigPage() {
   const supabase = await createClient();
@@ -28,7 +28,7 @@ export default async function WhatsappConfigPage() {
         agente: normalizarAgente(cfg.agente),
       }}
       webhookUrl={`${appUrl}/api/webhooks/whatsapp`}
-      verifyToken={process.env.WHATSAPP_VERIFY_TOKEN ?? "clinicflow_webhook_verify"}
+      verifyToken={process.env.WHATSAPP_VERIFY_TOKEN ?? "Veteriblandenguer_webhook_verify"}
     />
   );
 }

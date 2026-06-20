@@ -8,7 +8,7 @@ import type { PlanKey } from "@/lib/plans";
 
 const PLANES: { key: PlanKey | "trial"; label: string }[] = [
   { key: "trial", label: "Trial" },
-  { key: "starter", label: "Starter" },
+  { key: "basico", label: "Básico" },
   { key: "pro", label: "Pro" },
   { key: "clinica", label: "Clínica" },
 ];

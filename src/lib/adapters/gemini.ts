@@ -48,14 +48,14 @@ interface GeminiAdapter {
   generarImagen(prompt: string): Promise<ImagenGenerada | null>;
 }
 
-/** Instrucción de sistema para la redacción SEO del blog de Clinicomatic. */
-const BLOG_SYSTEM_INSTRUCTION = `Eres redactor SEO senior del blog de Clinicomatic, un software de gestión para clínicas (estéticas, dentales, médicas, fisioterapia, etc.) en España. Escribes en español de España, tono profesional cercano, orientado a propietarios y gerentes de clínica.
+/** Instrucción de sistema para la redacción SEO del blog de Veteriblandenguer. */
+const BLOG_SYSTEM_INSTRUCTION = `Eres redactor SEO senior del blog de Veteriblandenguer, un software de gestión para clínicas (estéticas, dentales, médicas, fisioterapia, etc.) en España. Escribes en español de España, tono profesional cercano, orientado a propietarios y gerentes de clínica.
 
-FUENTE DE VERDAD (no inventes funciones): Clinicomatic gestiona pacientes e historia clínica, agenda con recordatorios por WhatsApp, CRM, tratamientos y recurrencias, presupuestos y facturación (con Verifactu/TicketBAI), bonos, caja, inventario, consentimientos, agente de voz IA y analítica. Multi-clínica, datos en la UE, cumple RGPD.
+FUENTE DE VERDAD (no inventes funciones): Veteriblandenguer gestiona pacientes e historia clínica, agenda con recordatorios por WhatsApp, CRM, tratamientos y recurrencias, presupuestos y facturación (con Verifactu/TicketBAI), bonos, caja, inventario, consentimientos, agente de voz IA y analítica. Multi-clínica, datos en la UE, cumple RGPD.
 
 REGLAS DE HTML: devuelve SOLO el cuerpo del artículo en HTML semántico usando <h2>, <h3>, <p>, <ul>/<li>, <ol>/<li>, <strong>, <em>, <blockquote>, <table>. NO uses <h1>, NO uses atributos class/style, NO incluyas <html>/<head>/<body>.
 
-REGLAS EDITORIALES: 4-6 secciones <h2>; 1200-1800 palabras; incluye la keyword principal en el primer <h2>; añade al menos una lista y, si encaja, una tabla o un ejemplo con cifras; evita clichés y relleno; cierra con un párrafo que mencione cómo Clinicomatic ayuda. Nada de promesas médicas ni datos clínicos inventados.
+REGLAS EDITORIALES: 4-6 secciones <h2>; 1200-1800 palabras; incluye la keyword principal en el primer <h2>; añade al menos una lista y, si encaja, una tabla o un ejemplo con cifras; evita clichés y relleno; cierra con un párrafo que mencione cómo Veteriblandenguer ayuda. Nada de promesas médicas ni datos clínicos inventados.
 
 Devuelve SIEMPRE un JSON válido (sin markdown ni texto fuera del JSON) con las claves exactas: "titulo" (string, atractivo y con la keyword), "excerpt" (string, 150-200 caracteres), "contenido_html" (string con el cuerpo en HTML), "meta_title" (string, <=60 caracteres), "meta_description" (string, <=155 caracteres), "tags" (array de 3-6 strings), "featured_image_brief" (string EN INGLÉS: prompt para una fotografía editorial realista de portada relacionada con el tema —entorno de clínica/salud/gestión, luz natural, profesional, sin texto ni logotipos ni marcas de agua, sin collages ni ilustraciones), "featured_image_alt" (string en español, descripción breve de la imagen para accesibilidad).`;
 
@@ -79,25 +79,25 @@ class MockGeminiAdapter implements GeminiAdapter {
     const lower = mensaje.toLowerCase();
 
     if (lower.includes("precio") || lower.includes("cuánto cuesta") || lower.includes("coste")) {
-      return "Los precios orientativos los puede consultar directamente con nuestra recepción llamando al +34 968 000 000 o pasándose por la clínica 😊";
+      return "Los precios orientativos los puede consultar directamente con nuestra recepción llamando al +34 968 000 000 o pasándose por la clínica ðŸ˜Š";
     }
     if (lower.includes("cita") || lower.includes("reservar") || lower.includes("hora") || lower.includes("hueco")) {
-      return "¡Claro! Tenemos disponibilidad esta semana. ¿Qué tratamiento te interesa y qué día te viene mejor? Nuestro horario es: L 10-17h, M 11-20:30h, X 10-20:30h, J 10-20h, V 10-14h 🌿";
+      return "¡Claro! Tenemos disponibilidad esta semana. ¿Qué tratamiento te interesa y qué día te viene mejor? Nuestro horario es: L 10-17h, M 11-20:30h, X 10-20:30h, J 10-20h, V 10-14h ðŸŒ¿";
     }
     if (lower.includes("horario") || lower.includes("cuando abren") || lower.includes("a qué hora")) {
       return "Nuestro horario es: Lunes 10-17h · Martes 11-20:30h · Miércoles 10-20:30h · Jueves 10-20h · Viernes 10-14h. ¿Te podemos ayudar en algo más?";
     }
     if (lower.includes("dirección") || lower.includes("donde están") || lower.includes("ubicación") || lower.includes("como llegar")) {
-      return "Estamos en el Paseo Almirante Fajardo de Guevara 9, Murcia 📍 ¡Te esperamos!";
+      return "Estamos en el Paseo Almirante Fajardo de Guevara 9, Murcia ðŸ“ ¡Te esperamos!";
     }
 
-    return "Hola, soy el asistente de Clinicomatic 🌿 Puedo ayudarte con información sobre nuestros tratamientos, horarios y citas. ¿En qué puedo ayudarte?";
+    return "Hola, soy el asistente de Veteriblandenguer ðŸŒ¿ Puedo ayudarte con información sobre nuestros tratamientos, horarios y citas. ¿En qué puedo ayudarte?";
   }
 
   async asistirEquipo(pregunta: string, contexto: string): Promise<string> {
     console.info(`[GEMINI MOCK] Asistente: ${pregunta.slice(0, 60)}…`);
     const ctx = contexto ? `Según tus datos: ${contexto} ` : "";
-    return `${ctx}Puedo ayudarte a navegar Clinicomatic, revisar tu agenda, las recomendaciones de tratamientos, el stock y tus pacientes. Conecta una clave de IA (GEMINI_API_KEY) para respuestas completas. ¿En qué te ayudo?`;
+    return `${ctx}Puedo ayudarte a navegar Veteriblandenguer, revisar tu agenda, las recomendaciones de tratamientos, el stock y tus pacientes. Conecta una clave de IA (GEMINI_API_KEY) para respuestas completas. ¿En qué te ayudo?`;
   }
 
   async generarArticuloBlog(input: ArticuloBlogInput): Promise<ArticuloBlogOutput> {
@@ -106,7 +106,7 @@ class MockGeminiAdapter implements GeminiAdapter {
     const kw = input.keyword || tema;
     const titulo = input.titulo || `${tema}: guía práctica para tu clínica`;
     const contenidoHtml = `
-<p>La <strong>${kw}</strong> es uno de los retos que más tiempo consume en el día a día de una clínica. En esta guía repasamos cómo abordarla de forma ordenada y qué papel juega un software de gestión como Clinicomatic.</p>
+<p>La <strong>${kw}</strong> es uno de los retos que más tiempo consume en el día a día de una clínica. En esta guía repasamos cómo abordarla de forma ordenada y qué papel juega un software de gestión como Veteriblandenguer.</p>
 <h2>Por qué importa ${kw}</h2>
 <p>Una buena organización repercute directamente en la experiencia del paciente y en la rentabilidad. Cuando los procesos están claros, el equipo trabaja con menos fricción y se reducen los errores.</p>
 <ul>
@@ -118,15 +118,15 @@ class MockGeminiAdapter implements GeminiAdapter {
 <p>El primer paso es centralizar la información: agenda, historia clínica y facturación en un mismo lugar. A partir de ahí, conviene automatizar lo repetitivo (recordatorios, recurrencias de tratamiento) y revisar los indicadores con regularidad.</p>
 <h2>Errores frecuentes que conviene evitar</h2>
 <p>Apoyarse en hojas de cálculo dispersas, no medir resultados o descuidar el cumplimiento normativo (RGPD, Verifactu) son tropiezos habituales que tienen solución con las herramientas adecuadas.</p>
-<h2>Clinicomatic como aliado</h2>
-<p>Con Clinicomatic unificas pacientes, agenda con recordatorios por WhatsApp, facturación con Verifactu/TicketBAI y analítica en una sola plataforma pensada para clínicas. Así tu equipo dedica el tiempo a lo que importa: cuidar a los pacientes.</p>`.trim();
+<h2>Veteriblandenguer como aliado</h2>
+<p>Con Veteriblandenguer unificas pacientes, agenda con recordatorios por WhatsApp, facturación con Verifactu/TicketBAI y analítica en una sola plataforma pensada para clínicas. Así tu equipo dedica el tiempo a lo que importa: cuidar a los pacientes.</p>`.trim();
     return {
       titulo,
       excerpt: `Guía práctica sobre ${kw} para clínicas: claves, pasos y errores a evitar para mejorar tu gestión diaria.`,
       contenidoHtml,
       metaTitle: titulo.slice(0, 60),
-      metaDescription: `Descubre cómo abordar ${kw} en tu clínica con una guía práctica y el apoyo de Clinicomatic.`.slice(0, 155),
-      tags: [tema, "gestión de clínicas", "Clinicomatic"].slice(0, 6),
+      metaDescription: `Descubre cómo abordar ${kw} en tu clínica con una guía práctica y el apoyo de Veteriblandenguer.`.slice(0, 155),
+      tags: [tema, "gestión de clínicas", "Veteriblandenguer"].slice(0, 6),
       imagenBrief: `Editorial photograph related to ${tema}, modern clinic environment, natural light, professional, no text`,
       imagenAlt: `Imagen ilustrativa sobre ${kw}`,
     };
@@ -226,7 +226,7 @@ Respuesta:`;
   }
 
   async asistirEquipo(pregunta: string, contexto: string): Promise<string> {
-    const prompt = `Eres el asistente de IA integrado en Clinicomatic, software de gestión para clínicas (estéticas, dentales y generales). Ayudas al EQUIPO de la clínica a usar la app y a entender sus datos del día. Responde en español, claro, cálido y conciso (máx. 6 frases). No des consejo médico ni diagnósticos. Para datos concretos usa SOLO el contexto; si algo no está, dilo y sugiere dónde mirarlo en la app.
+    const prompt = `Eres el asistente de IA integrado en Veteriblandenguer, software de gestión para clínicas (estéticas, dentales y generales). Ayudas al EQUIPO de la clínica a usar la app y a entender sus datos del día. Responde en español, claro, cálido y conciso (máx. 6 frases). No des consejo médico ni diagnósticos. Para datos concretos usa SOLO el contexto; si algo no está, dilo y sugiere dónde mirarlo en la app.
 
 Contexto actual de la clínica:
 ${contexto}

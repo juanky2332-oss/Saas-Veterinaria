@@ -34,7 +34,7 @@ export function AfiliadoRegistro({ nombrePorDefecto, emailPorDefecto }: { nombre
         <span className="flex h-12 w-12 items-center justify-center rounded-[12px] bg-[var(--brand-tint)] text-[var(--brand-strong)]"><Handshake size={22} /></span>
         <div>
           <h1 className="font-display text-xl font-bold text-[var(--text)]">Programa de afiliados</h1>
-          <p className="text-sm text-[var(--text-soft)]">Recomienda Clinicomatic y gana una comisión recurrente por cada clínica que se suscriba.</p>
+          <p className="text-sm text-[var(--text-soft)]">Recomienda Veteriblandenguer y gana una comisión recurrente por cada clínica que se suscriba.</p>
         </div>
       </div>
 

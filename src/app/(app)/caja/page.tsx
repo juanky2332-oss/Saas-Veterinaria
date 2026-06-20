@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Header } from "@/components/layout/header";
 import { CajaView } from "@/components/modules/gestion/caja-view";
 
-export const metadata = { title: "Caja — Clinicomatic" };
+export const metadata = { title: "Caja — Veteriblandenguer" };
 
 export default async function CajaPage() {
   const supabase = await createClient();

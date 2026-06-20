@@ -11,7 +11,7 @@ import type { FeatureState } from "@/lib/features";
 import { navItemsBySeccion, secondaryNavItems, type NavItem } from "./nav-items";
 
 export function Sidebar({
-  clinicName = "Clinicomatic",
+  clinicName = "Veteriblandenguer",
   logoUrl = null,
   features,
   isSuperadmin = false,

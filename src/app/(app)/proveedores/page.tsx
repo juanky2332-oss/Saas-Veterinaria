@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Header } from "@/components/layout/header";
 import { ProveedoresView } from "@/components/modules/gestion/proveedores-view";
 
-export const metadata = { title: "Proveedores — Clinicomatic" };
+export const metadata = { title: "Proveedores — Veteriblandenguer" };
 
 export default async function ProveedoresPage() {
   const supabase = await createClient();

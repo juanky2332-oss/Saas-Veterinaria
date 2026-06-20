@@ -63,7 +63,7 @@ class LiveRetellAdapter implements RetellAdapter {
       const agent = await this.call("/create-agent", input.apiKey, {
         response_engine: { type: "retell-llm", llm_id: llm.llm_id },
         voice_id: input.vozId,
-        agent_name: `Clinicomatic · ${input.nombreClinica}`,
+        agent_name: `Veteriblandenguer · ${input.nombreClinica}`,
         language: "es-ES",
         webhook_url: input.webhookUrl,
       });

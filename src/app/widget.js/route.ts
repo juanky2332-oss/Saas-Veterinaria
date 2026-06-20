@@ -2,7 +2,7 @@ const APP = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
 /**
  * Script embebible del widget de reservas. La clínica lo pega en su web:
- *   <script src="https://app.clinicomatic.app/widget.js" data-clinic="su-slug"></script>
+ *   <script src="https://app.Veteriblandenguer.app/widget.js" data-clinic="su-slug"></script>
  * Inyecta un iframe a /reservar/{slug} justo donde está el <script>.
  */
 export function GET() {
@@ -10,7 +10,7 @@ export function GET() {
   var s = document.currentScript;
   if(!s){ return; }
   var slug = s.getAttribute('data-clinic');
-  if(!slug){ console.error('[Clinicomatic] Falta data-clinic en el script del widget'); return; }
+  if(!slug){ console.error('[Veteriblandenguer] Falta data-clinic en el script del widget'); return; }
   var height = s.getAttribute('data-height') || '720';
   var iframe = document.createElement('iframe');
   iframe.src = ${JSON.stringify(APP)} + '/reservar/' + encodeURIComponent(slug);

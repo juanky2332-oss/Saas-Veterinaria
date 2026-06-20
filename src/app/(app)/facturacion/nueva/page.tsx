@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { NuevaFacturaForm } from "./nueva-factura-form";
 
-export const metadata = { title: "Nueva factura — Clinicomatic" };
+export const metadata = { title: "Nueva factura — Veteriblandenguer" };
 
 export default async function NuevaFacturaPage() {
   const supabase = await createClient();

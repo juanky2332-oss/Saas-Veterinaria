@@ -15,7 +15,7 @@ import { toast } from "sonner";
 // Facturas demo (en producción vendrían de Supabase / Holded)
 const facturasDemo = [
   { id: "F-2024-001", paciente: "María García López", concepto: "Toxina Botulínica", importe: 350, fecha: "2024-11-15", estado: "enviada", holded_id: "HOL-001" },
-  { id: "F-2024-002", paciente: "Carmen Martínez Ruiz", concepto: "Ácido Hialurónico Labios", importe: 420, fecha: "2024-11-12", estado: "pagada", holded_id: "HOL-002" },
+  { id: "F-2024-002", paciente: "Carmen Martínez Ruiz", concepto: "Ãcido Hialurónico Labios", importe: 420, fecha: "2024-11-12", estado: "pagada", holded_id: "HOL-002" },
   { id: "F-2024-003", paciente: "Ana López Fernández", concepto: "Radiofrecuencia Facial", importe: 280, fecha: "2024-11-10", estado: "enviada", holded_id: null },
   { id: "F-2024-004", paciente: "Isabel Sánchez Torres", concepto: "PRP Capilar", importe: 350, fecha: "2024-11-08", estado: "pendiente", holded_id: null },
 ];
@@ -65,7 +65,7 @@ export function FacturacionView() {
         <div className="flex-1">
           <p className="text-sm font-semibold text-[var(--tinta)]">Facturación delegada en tu software externo</p>
           <p className="text-xs text-[var(--tinta-suave)] mt-0.5">
-            Clinicomatic genera <strong>eventos de facturación</strong> que se envían automáticamente a tu programa de facturación (Holded u otro). No se almacenan datos fiscales aquí.
+            Veteriblandenguer genera <strong>eventos de facturación</strong> que se envían automáticamente a tu programa de facturación (Holded u otro). No se almacenan datos fiscales aquí.
           </p>
         </div>
         <Button size="sm" className="shrink-0 gap-1.5" onClick={() => setDialogOpen(true)}>
@@ -180,7 +180,7 @@ export function FacturacionView() {
             ))}
           </div>
           <p className="mt-3 text-xs text-[var(--tinta-suave)]">
-            Para cambiar el proveedor o añadir credenciales reales, ve a <strong>Configuración → Integraciones</strong>.
+            Para cambiar el proveedor o añadir credenciales reales, ve a <strong>Configuración â†’ Integraciones</strong>.
           </p>
         </CardContent>
       </Card>
@@ -211,7 +211,7 @@ export function FacturacionView() {
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Importe (€)</Label>
+              <Label>Importe (â‚¬)</Label>
               <Input
                 required
                 type="number"

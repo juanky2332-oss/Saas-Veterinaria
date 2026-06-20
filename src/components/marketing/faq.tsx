@@ -5,12 +5,30 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const FAQS = [
-  { q: "¿Sirve para mi tipo de clínica?", a: "Sí. Clinicomatic se adapta a clínicas dentales, estéticas y médicas en general. Al crear tu clínica eliges tu especialidad y la app ajusta terminología, tratamientos y módulos." },
-  { q: "¿Mis datos están seguros y cumplen el RGPD?", a: "Sí. Los datos se alojan en la UE y cada clínica está completamente aislada (Row Level Security). Tratamos datos de salud (Art. 9 RGPD) con cifrado, control de acceso por rol y almacenamiento privado de fotos y documentos." },
-  { q: "¿Necesito tarjeta para probarlo?", a: "No. Tienes 14 días de prueba gratis sin tarjeta. Después eliges el plan que mejor encaje con tu clínica." },
-  { q: "¿Puedo enviar recordatorios por WhatsApp?", a: "Sí. Clinicomatic envía recordatorios de cita y de tratamientos recurrentes por WhatsApp, e incluye una bandeja con agente de IA para responder a tus pacientes." },
-  { q: "¿Puedo emitir facturas?", a: "Sí. Incluye un módulo de facturación y está preparado para integrarse con Verifacti (Verifactu y TicketBAI homologados)." },
-  { q: "¿Puedo migrar mis datos actuales?", a: "Sí. Dispones de importador y de una API propia documentada para conectar Clinicomatic con tus herramientas y no quedar encerrado en ningún software." },
+  {
+    q: "¿Sirve para todo tipo de veterinaria?",
+    a: "Sí. Veteriblandenguer está diseñado para clínicas de pequeños animales (perros y gatos), animales exóticos y medicina equina. Al crear tu veterinaria eliges tu especialidad y la app ajusta la terminología y los módulos.",
+  },
+  {
+    q: "¿Mis datos están seguros y cumplen el RGPD?",
+    a: "Sí. Los datos se alojan en la UE y cada clínica está completamente aislada (Row Level Security). Tratamos datos con cifrado, control de acceso por rol y almacenamiento privado de fotos e historiales.",
+  },
+  {
+    q: "¿Necesito tarjeta para probarlo?",
+    a: "No. Tienes 10 días de prueba gratis sin tarjeta. Después eliges el plan que mejor encaje con tu veterinaria.",
+  },
+  {
+    q: "¿Puedo enviar recordatorios de vacunas y citas por WhatsApp?",
+    a: "Sí. Veteriblandenguer envía recordatorios de citas y alertas de vacunas próximas por WhatsApp, e incluye una bandeja con agente de IA para responder a tus clientes.",
+  },
+  {
+    q: "¿Puedo emitir facturas a los propietarios?",
+    a: "Sí. Incluye un módulo de facturación a nombre del propietario (dueño de la mascota) con NIF, dirección y desglose de servicios. Compatible con Verifactu y TicketBAI.",
+  },
+  {
+    q: "¿Puedo migrar mis datos actuales?",
+    a: "Sí. Dispones de importador y de una API propia documentada para conectar Veteriblandenguer con tus herramientas y no quedar encerrado en ningún software.",
+  },
 ];
 
 export function Faq() {

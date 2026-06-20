@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Header } from "@/components/layout/header";
 import { PresupuestosLista } from "./presupuestos-lista";
 
-export const metadata = { title: "Presupuestos — Clinicomatic" };
+export const metadata = { title: "Presupuestos — Veteriblandenguer" };
 
 export default async function PresupuestosPage() {
   const supabase = await createClient();

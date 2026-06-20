@@ -5,15 +5,15 @@ import { MarketingNav } from "@/components/marketing/nav";
 import { Faq } from "@/components/marketing/faq";
 import { PricingCards } from "@/components/billing/pricing-cards";
 
-const base = process.env.NEXT_PUBLIC_APP_URL ?? "https://clinicomatic.app";
+const base = process.env.NEXT_PUBLIC_APP_URL ?? "https://Veteriblandenguer.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(base),
-  title: "Precios — Clinicomatic | Software de gestión para clínicas",
+  title: "Precios — Veteriblandenguer | Software de gestión para clínicas",
   description:
-    "Planes de Clinicomatic para clínicas dentales, estéticas y médicas. Desde 39€/mes. 14 días de prueba gratis, sin tarjeta y sin permanencia.",
+    "Planes de Veteriblandenguer para clínicas dentales, estéticas y médicas. Desde 39â‚¬/mes. 14 días de prueba gratis, sin tarjeta y sin permanencia.",
   alternates: { canonical: "/precios" },
-  openGraph: { title: "Precios de Clinicomatic", description: "Desde 39€/mes. 14 días gratis, sin tarjeta.", url: `${base}/precios`, locale: "es_ES", type: "website" },
+  openGraph: { title: "Precios de Veteriblandenguer", description: "Desde 39â‚¬/mes. 14 días gratis, sin tarjeta.", url: `${base}/precios`, locale: "es_ES", type: "website" },
 };
 
 export default function PreciosPage() {

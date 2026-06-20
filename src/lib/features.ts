@@ -1,13 +1,13 @@
 /**
  * Veteriblandenguer — Núcleo de features por vertical.
  *
- * Arquitectura igual que ClinicFlow pero adaptada a clínicas veterinarias.
+ * Arquitectura igual que Veteriblandenguer pero adaptada a clínicas veterinarias.
  * El único vertical activo en v1 es `veterinaria`. La estructura de presets
  * se mantiene para poder añadir `exoticos`, `equina`, etc. en el futuro.
  */
 
 export type FeatureKey =
-  // ── Módulos (entradas del menú lateral) ──
+  // â”€â”€ Módulos (entradas del menú lateral) â”€â”€
   | "agenda"
   | "clientes"
   | "vacunaciones"
@@ -21,7 +21,7 @@ export type FeatureKey =
   | "analitica"
   | "recetas"
   | "caja"
-  // ── Secciones de la ficha de la mascota ──
+  // â”€â”€ Secciones de la ficha de la mascota â”€â”€
   | "ficha_info"
   | "ficha_historial"
   | "ficha_vacunaciones"

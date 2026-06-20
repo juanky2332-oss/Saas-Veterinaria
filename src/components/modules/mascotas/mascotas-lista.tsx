@@ -70,7 +70,7 @@ export function MascotasLista({ mascotas }: Props) {
           icon={PawPrint}
           title={q ? "Sin resultados" : "Aún no hay mascotas"}
           description={q ? "Prueba con otro nombre o raza." : "Registra la primera mascota de tu clínica."}
-          action={!q ? { label: "Añadir mascota", href: "/mascotas/nueva" } : undefined}
+          action={!q ? <Button asChild><Link href="/mascotas/nueva"><Plus className="size-4 mr-1" /> Añadir mascota</Link></Button> : undefined}
         />
       ) : (
         <div className="grid gap-2">
@@ -95,13 +95,13 @@ export function MascotasLista({ mascotas }: Props) {
 
               <div className="flex items-center gap-2 shrink-0">
                 {m.esterilizado && (
-                  <Badge variant="secondary" className="text-xs">Esterilizado</Badge>
+                  <Badge variant="muted" className="text-xs">Esterilizado</Badge>
                 )}
                 {m.peso_kg && (
                   <span className="text-xs text-[var(--text-soft)]">{m.peso_kg} kg</span>
                 )}
                 {m.sexo && (
-                  <Badge variant="outline" className="text-xs capitalize">{m.sexo}</Badge>
+                  <Badge variant="default" className="text-xs capitalize">{m.sexo}</Badge>
                 )}
               </div>
             </Link>

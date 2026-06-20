@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 const openapi = {
   openapi: "3.0.3",
   info: {
-    title: "Clinicomatic API",
+    title: "Veteriblandenguer API",
     version: "1.0.0",
-    description: "API pública de Clinicomatic. Autenticación con Bearer token (API key).",
+    description: "API pública de Veteriblandenguer. Autenticación con Bearer token (API key).",
     contact: { name: "Flownexion", email: "hola@flownexion.com" },
   },
   servers: [{ url: "/api/public/v1" }],

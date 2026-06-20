@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { VerifactuClient } from "./verifactu-client";
 import { verifactiModo } from "@/lib/adapters/verifacti";
 
-export const metadata = { title: "Verifactu — Clinicomatic" };
+export const metadata = { title: "Verifactu — Veteriblandenguer" };
 
 export default async function VerifactuPage() {
   const supabase = await createClient();

@@ -1,4 +1,4 @@
-﻿-- ============================================================
+-- ============================================================
 -- Veteriblandenguer — Setup completo de base de datos
 -- Ejecutar de una vez en Supabase SQL Editor
 -- Proyecto: wpizveklcchglpyaqhjt

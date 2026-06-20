@@ -51,7 +51,7 @@ export function ClientesLista({ clientes }: Props) {
           icon={Users}
           title={q ? "Sin resultados" : "Aún no hay clientes"}
           description={q ? "Prueba con otro nombre." : "Registra el primer propietario de mascota."}
-          action={!q ? { label: "Añadir cliente", href: "/clientes/nuevo" } : undefined}
+          action={!q ? <Button asChild><Link href="/clientes/nuevo"><Plus className="size-4 mr-1" /> Añadir cliente</Link></Button> : undefined}
         />
       ) : (
         <div className="grid gap-2">

@@ -1,10 +1,10 @@
 import { createClient } from "@/lib/supabase/server";
 import { FacturacionLista, type FacturaRow } from "./facturacion-lista";
 
-export const metadata = { title: "Facturación — Clinicomatic" };
+export const metadata = { title: "Facturación — Veteriblandenguer" };
 
 // Tipo explícito del resultado (el join embebido invoice_items se infiere como
-// `any` en algunos entornos de build → evita "implicit any" en el .map).
+// `any` en algunos entornos de build â†’ evita "implicit any" en el .map).
 type FacturaSrc = {
   id: string; numero: string; fecha: string; vencimiento: string | null;
   cliente_nombre: string; subtotal: number; iva_total: number; total: number;

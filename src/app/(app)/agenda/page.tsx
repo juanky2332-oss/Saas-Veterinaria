@@ -4,7 +4,7 @@ import { AgendaView } from "@/components/modules/agenda/agenda-view";
 import { getCurrentOrg } from "@/lib/auth/org";
 import { DEFAULT_TZ } from "@/lib/tz";
 
-export const metadata = { title: "Agenda — Clinicomatic" };
+export const metadata = { title: "Agenda — Veteriblandenguer" };
 
 export default async function AgendaPage() {
   const supabase = await createClient();
@@ -15,7 +15,7 @@ export default async function AgendaPage() {
   inicio.setHours(0, 0, 0, 0);
   const fin = new Date(inicio);
   fin.setDate(inicio.getDate() + 7);
-  // Ventana de fetch ampliada ±1 día para no perder citas en los bordes según la zona horaria.
+  // Ventana de fetch ampliada Â±1 día para no perder citas en los bordes según la zona horaria.
   const desde = new Date(inicio); desde.setDate(desde.getDate() - 1);
   const hasta = new Date(fin); hasta.setDate(hasta.getDate() + 1);
 

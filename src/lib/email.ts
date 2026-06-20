@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
-const FROM = process.env.EMAIL_FROM || "Clinicomatic <onboarding@resend.dev>";
+const FROM = process.env.EMAIL_FROM || "Veteriblandenguer <onboarding@resend.dev>";
 
 /** Envía un email. NUNCA lanza: el email no debe romper el flujo de negocio. */
 export async function sendEmail(opts: {
@@ -23,7 +23,7 @@ export async function sendEmail(opts: {
   }
 }
 
-/** Plantilla HTML de marca Clinicomatic (teal). Reutilizable para todos los correos. */
+/** Plantilla HTML de marca Veteriblandenguer (teal). Reutilizable para todos los correos. */
 export function brandEmail(opts: {
   title: string;
   body: string;
@@ -39,7 +39,7 @@ export function brandEmail(opts: {
   <tr><td align="center">
     <table width="480" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e0e7e6">
       <tr><td style="background:linear-gradient(135deg,#06322c,#0a7c6f);padding:22px 28px">
-        <span style="color:#fff;font-size:20px;font-weight:800;letter-spacing:-0.01em">Clinicomatic</span>
+        <span style="color:#fff;font-size:20px;font-weight:800;letter-spacing:-0.01em">Veteriblandenguer</span>
       </td></tr>
       <tr><td style="padding:28px">
         <h1 style="font-size:19px;color:#15292b;margin:0 0 10px">${opts.title}</h1>
@@ -47,7 +47,7 @@ export function brandEmail(opts: {
         ${cta}
       </td></tr>
       <tr><td style="padding:16px 28px;border-top:1px solid #eef2f1;font-size:11px;color:#9fb0b3">
-        ${opts.footer ?? "© Clinicomatic · Si no esperabas este correo, ignóralo."}
+        ${opts.footer ?? "© Veteriblandenguer · Si no esperabas este correo, ignóralo."}
       </td></tr>
     </table>
   </td></tr>
@@ -56,9 +56,9 @@ export function brandEmail(opts: {
 
 export function welcomeEmail(clinicName: string): { subject: string; html: string } {
   return {
-    subject: `Te damos la bienvenida a Clinicomatic`,
+    subject: `Te damos la bienvenida a Veteriblandenguer`,
     html: brandEmail({
-      title: `¡${clinicName} ya está en Clinicomatic!`,
+      title: `¡${clinicName} ya está en Veteriblandenguer!`,
       body: "Tu clínica está lista. Empieza añadiendo pacientes, configurando tu agenda y activando los recordatorios por WhatsApp. Tienes 14 días de prueba por delante.",
       ctaText: "Ir a mi clínica",
       ctaUrl: `${process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"}/dashboard`,
@@ -68,9 +68,9 @@ export function welcomeEmail(clinicName: string): { subject: string; html: strin
 
 export function inviteEmail(clinicName: string, inviteUrl: string): { subject: string; html: string } {
   return {
-    subject: `Te han invitado a ${clinicName} en Clinicomatic`,
+    subject: `Te han invitado a ${clinicName} en Veteriblandenguer`,
     html: brandEmail({
-      title: `Únete a ${clinicName}`,
+      title: `Ãšnete a ${clinicName}`,
       body: `Te han invitado a colaborar en la gestión de la clínica <strong>${clinicName}</strong>. Acepta la invitación para crear tu acceso.`,
       ctaText: "Aceptar invitación",
       ctaUrl: inviteUrl,

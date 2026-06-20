@@ -4,7 +4,7 @@ import { planNombre } from "@/lib/plans";
 import { AfiliadoRegistro } from "./afiliado-registro";
 import { AfiliadoPanel, type Referido, type Payout } from "./afiliado-panel";
 
-export const metadata = { title: "Programa de afiliados — Clinicomatic" };
+export const metadata = { title: "Programa de afiliados — Veteriblandenguer" };
 export const dynamic = "force-dynamic";
 
 export default async function AfiliadosPage() {

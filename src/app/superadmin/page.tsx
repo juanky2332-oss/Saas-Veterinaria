@@ -57,7 +57,7 @@ export default async function SuperadminHomePage() {
 
   return (
     <div>
-      <PageTitle title="Resumen de la plataforma" subtitle="Métricas globales de Clinicomatic en todas las organizaciones." />
+      <PageTitle title="Resumen de la plataforma" subtitle="Métricas globales de Veteriblandenguer en todas las organizaciones." />
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatCard label="MRR estimado" value={eur(mrr)} hint={`${activas} suscripciones activas`} accent="emerald" />
@@ -92,7 +92,7 @@ export default async function SuperadminHomePage() {
         </Panel>
       </div>
 
-      <Panel title="Últimas clínicas registradas" className="mt-3" right={<Link href="/superadmin/organizations" className="text-xs font-semibold text-indigo-300 hover:text-indigo-200">Ver todas</Link>}>
+      <Panel title="Ãšltimas clínicas registradas" className="mt-3" right={<Link href="/superadmin/organizations" className="text-xs font-semibold text-indigo-300 hover:text-indigo-200">Ver todas</Link>}>
         {orgs.length === 0 ? (
           <p className="py-4 text-center text-sm text-white/45">Aún no hay organizaciones.</p>
         ) : (

@@ -1,20 +1,33 @@
 "use client";
 
-import { Bell, Search } from "lucide-react";
+import { Bell, Search, ChevronLeft } from "lucide-react";
+import Link from "next/link";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface HeaderProps {
   title?: string;
   actions?: React.ReactNode;
+  back?: string;
+  subtitle?: string;
+  icon?: React.ReactNode;
 }
 
-export function Header({ title, actions }: HeaderProps) {
+export function Header({ title, actions, back, subtitle, icon }: HeaderProps) {
   return (
     <header className="flex items-center gap-4 border-b border-[var(--lino)] bg-[var(--blanco-calido)] px-4 md:px-6 py-3 h-14 shrink-0">
+      {back && (
+        <Link href={back} className="shrink-0 rounded-lg p-1.5 text-[var(--tinta-suave)] hover:bg-[var(--arena)] transition-colors">
+          <ChevronLeft className="size-4" />
+        </Link>
+      )}
       {title && (
-        <h1 className="text-lg font-display font-semibold text-[var(--tinta)] shrink-0 hidden md:block">
-          {title}
-        </h1>
+        <div className="hidden md:flex items-center gap-2 shrink-0">
+          {icon && <span className="shrink-0">{icon}</span>}
+          <div>
+            <h1 className="text-base font-display font-semibold text-[var(--tinta)] leading-tight">{title}</h1>
+            {subtitle && <p className="text-xs text-[var(--tinta-suave)] leading-tight">{subtitle}</p>}
+          </div>
+        </div>
       )}
 
       {/* Search — se expande para ocupar el espacio */}

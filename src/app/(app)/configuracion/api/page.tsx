@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { CopyField } from "@/components/configuracion/copy-field";
 import { ApiClient, type ApiKeyRow } from "./api-client";
 
-export const metadata = { title: "API y desarrolladores — Clinicomatic" };
+export const metadata = { title: "API y desarrolladores — Veteriblandenguer" };
 
 export default async function ApiPage() {
   const supabase = await createClient();
@@ -21,7 +21,7 @@ export default async function ApiPage() {
       <div>
         <h1 className="font-display text-2xl font-bold text-[var(--text)]">API y desarrolladores</h1>
         <p className="mt-1 text-sm text-[var(--text-soft)]">
-          Conecta Clinicomatic con cualquier otra aplicación: pacientes, citas, CRM y facturación a través de tu API.
+          Conecta Veteriblandenguer con cualquier otra aplicación: pacientes, citas, CRM y facturación a través de tu API.
         </p>
       </div>
 

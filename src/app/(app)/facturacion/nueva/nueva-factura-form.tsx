@@ -195,7 +195,7 @@ export function NuevaFacturaForm({ pacientes, tratamientos, numeroPreview, ivaDe
               <tr key={i}>
                 <td className="px-4 py-2">
                   <input
-                    list="conceptos-clinicflow"
+                    list="conceptos-Veteriblandenguer"
                     value={it.descripcion}
                     onChange={(e) => onDescripcion(i, e.target.value)}
                     placeholder="Escribe el concepto o elige un tratamiento…"
@@ -226,7 +226,7 @@ export function NuevaFacturaForm({ pacientes, tratamientos, numeroPreview, ivaDe
             ))}
           </tbody>
         </table>
-        <datalist id="conceptos-clinicflow">
+        <datalist id="conceptos-Veteriblandenguer">
           {tratamientos.map((t) => <option key={t.nombre} value={t.nombre} />)}
         </datalist>
         <div className="border-t border-[var(--border)] px-4 py-2.5">

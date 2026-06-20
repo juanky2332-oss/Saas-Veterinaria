@@ -23,13 +23,14 @@ export default async function DashboardPage() {
     supabase.from("clientes").select("*", { count: "exact", head: true }).is("deleted_at", null),
     supabase
       .from("appointments")
-      .select("id, inicio, motivo, mascotas(nombre, especie)")
+      .select("id, inicio, notas")
       .gte("inicio", hoyInicio.toISOString())
       .lte("inicio", hoyFin.toISOString())
       .order("inicio"),
     supabase
       .from("vacunaciones_vet")
       .select("id, vacuna, fecha_proxima, mascotas(id, nombre)")
+      .not("fecha_proxima", "is", null)
       .lte("fecha_proxima", en30)
       .order("fecha_proxima"),
   ]);
@@ -41,8 +42,8 @@ export default async function DashboardPage() {
         <DashboardVet
           totalMascotas={totalMascotas ?? 0}
           totalClientes={totalClientes ?? 0}
-          citasHoy={(citasHoy ?? []).map((c) => ({ ...c, fecha_hora: c.inicio, mascotas: Array.isArray(c.mascotas) ? c.mascotas[0] : c.mascotas }))}
-          vacunasProximas={(vacunasProximas ?? []).map((v) => ({ ...v, mascotas: Array.isArray(v.mascotas) ? v.mascotas[0] : v.mascotas }))}
+          citasHoy={(citasHoy ?? []).map((c) => ({ id: c.id, fecha_hora: c.inicio, motivo: c.notas ?? null, mascotas: null }))}
+          vacunasProximas={(vacunasProximas ?? []).filter((v) => v.fecha_proxima !== null).map((v) => ({ id: v.id, vacuna: v.vacuna, fecha_proxima: v.fecha_proxima as string, mascotas: Array.isArray(v.mascotas) ? v.mascotas[0] : (v.mascotas as { id: string; nombre: string } | null) }))}
           clinicName={org?.nombre ?? "Veteriblandenguer"}
         />
       </div>

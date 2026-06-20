@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Header } from "@/components/layout/header";
 import { CuotasView } from "@/components/modules/gestion/cuotas-view";
 
-export const metadata = { title: "Cuotas — Clinicomatic" };
+export const metadata = { title: "Cuotas — Veteriblandenguer" };
 
 export default async function CuotasPage() {
   const supabase = await createClient();

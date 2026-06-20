@@ -43,7 +43,7 @@ export function AssistantWidget() {
 
   return (
     <>
-      {/* Botón flotante — gradiente de IA (índigo→violeta) con estado */}
+      {/* Botón flotante — gradiente de IA (índigoâ†’violeta) con estado */}
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label="Asistente IA"
@@ -73,7 +73,7 @@ export function AssistantWidget() {
             <Sparkles size={17} strokeWidth={2} className="fill-white/80" />
           </span>
           <div className="leading-tight">
-            <p className="font-display text-sm font-semibold">Asistente Clinicomatic</p>
+            <p className="font-display text-sm font-semibold">Asistente Veteriblandenguer</p>
             <p className="text-[11px] text-white/70">IA · conoce los datos de tu clínica</p>
           </div>
         </div>
@@ -81,7 +81,7 @@ export function AssistantWidget() {
         <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
           {msgs.length === 0 && (
             <div className="space-y-3">
-              <p className="text-sm text-[var(--text-soft)]">Hola 👋 Soy tu asistente. Pregúntame sobre tu día:</p>
+              <p className="text-sm text-[var(--text-soft)]">Hola ðŸ‘‹ Soy tu asistente. Pregúntame sobre tu día:</p>
               <div className="flex flex-col gap-2">
                 {SUGERENCIAS.map((s) => (
                   <button key={s} onClick={() => enviar(s)} className="text-left text-sm rounded-[10px] border border-[var(--border)] px-3 py-2 text-[var(--text)] hover:bg-[var(--brand-tint)] hover:border-[var(--brand-soft)] transition-colors">

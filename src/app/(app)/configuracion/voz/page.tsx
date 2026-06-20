@@ -3,7 +3,7 @@ import { VozConfigClient } from "./voz-config-client";
 import { retellModo } from "@/lib/adapters/retell";
 import type { VozIntegrationConfig } from "@/lib/voz/agente";
 
-export const metadata = { title: "Agente de voz — Clinicomatic" };
+export const metadata = { title: "Agente de voz — Veteriblandenguer" };
 
 export default async function VozConfigPage() {
   const supabase = await createClient();

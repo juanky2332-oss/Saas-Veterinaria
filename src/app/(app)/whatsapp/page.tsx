@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Header } from "@/components/layout/header";
 import { WhatsappBandeja } from "@/components/modules/whatsapp/whatsapp-bandeja";
 
-export const metadata = { title: "WhatsApp — Clinicomatic" };
+export const metadata = { title: "WhatsApp — Veteriblandenguer" };
 
 export default async function WhatsappPage() {
   const supabase = await createClient();

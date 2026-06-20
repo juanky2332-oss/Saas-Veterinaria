@@ -68,7 +68,7 @@ export function ConfiguracionView({ rol, settings, apiKeys }: ConfiguracionViewP
         {subsecciones.map(s => (
           <a key={s.href} href={s.href}
             className="flex items-center gap-2 rounded-[10px] border border-[var(--lino)] bg-[var(--blanco-calido)] px-3 py-2 text-sm font-semibold text-[var(--tinta)] hover:bg-[var(--salvia-tint)] hover:text-[var(--oliva-oscuro)] hover:border-[var(--salvia)] transition-all duration-150 shadow-[var(--shadow-card)]">
-            → {s.label}
+            â†’ {s.label}
           </a>
         ))}
       </div>
@@ -81,7 +81,7 @@ export function ConfiguracionView({ rol, settings, apiKeys }: ConfiguracionViewP
                 <CardDescription>Datos que usa el agente IA y los recordatorios</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
-                <InfoRow label="Nombre" value={String(getSetting("nombre_clinica") ?? "Clinicomatic")} />
+                <InfoRow label="Nombre" value={String(getSetting("nombre_clinica") ?? "Veteriblandenguer")} />
                 <InfoRow label="Teléfono" value={String(getSetting("telefono_clinica") ?? "+34 968 000 000")} />
                 <InfoRow label="Dirección" value={String(getSetting("direccion_clinica") ?? "Paseo Almte. Fajardo de Guevara 9, Murcia")} />
                 <InfoRow label="Zona horaria" value={String(getSetting("timezone") ?? "Europe/Madrid")} />
@@ -137,7 +137,7 @@ export function ConfiguracionView({ rol, settings, apiKeys }: ConfiguracionViewP
                         <p className="text-sm font-semibold text-[var(--tinta)]">{k.nombre}</p>
                         <p className="text-xs text-[var(--tinta-suave)]">
                           Scopes: {k.scopes.join(", ")}
-                          {k.ultima_uso_at && ` · Último uso: ${formatFechaHora(k.ultima_uso_at)}`}
+                          {k.ultima_uso_at && ` · Ãšltimo uso: ${formatFechaHora(k.ultima_uso_at)}`}
                         </p>
                       </div>
                       <div className="flex items-center gap-2">
@@ -181,7 +181,7 @@ export function ConfiguracionView({ rol, settings, apiKeys }: ConfiguracionViewP
         {seccion === "integraciones" && isAdmin && (
           <div className="space-y-3">
             {[
-              { nombre: "WhatsApp Cloud API", estado: process.env.NEXT_PUBLIC_WA_MODE ?? "mock", descripcion: "Meta Business · número directo de Clinicomatic" },
+              { nombre: "WhatsApp Cloud API", estado: process.env.NEXT_PUBLIC_WA_MODE ?? "mock", descripcion: "Meta Business · número directo de Veteriblandenguer" },
               { nombre: "GoHighLevel", estado: "mock", descripcion: "Pipeline y leads de campañas" },
               { nombre: "Holded", estado: "mock", descripcion: "Facturación (vía n8n)" },
               { nombre: "Google Gemini", estado: "mock", descripcion: "Dictado de informes y agente IA" },
@@ -222,7 +222,7 @@ export function ConfiguracionView({ rol, settings, apiKeys }: ConfiguracionViewP
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-2.5">
                   <span className={`text-sm ${item.check ? "text-[var(--exito)]" : "text-[var(--aviso)]"}`}>
-                    {item.check ? "✓" : "⚠"}
+                    {item.check ? "âœ“" : "âš "}
                   </span>
                   <span className="text-sm text-[var(--tinta)]">{item.label}</span>
                 </div>

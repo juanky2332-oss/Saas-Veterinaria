@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Header } from "@/components/layout/header";
 import { MutuasView } from "@/components/modules/gestion/mutuas-view";
 
-export const metadata = { title: "Mutuas — Clinicomatic" };
+export const metadata = { title: "Mutuas — Veteriblandenguer" };
 
 export default async function MutuasPage() {
   const supabase = await createClient();

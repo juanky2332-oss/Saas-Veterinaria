@@ -56,7 +56,13 @@ export function TabVacunaciones({ mascotaId, vacunaciones, desparasitaciones }: 
 
   async function guardarDesparasitacion() {
     if (!formD.fecha_aplicacion) { toast.error("Indica la fecha"); return; }
-    const res = await crearDesparasitacion({ mascota_id: mascotaId, tipo: formD.tipo as "interna" | "externa" | "ambas", ...formD });
+    const res = await crearDesparasitacion({
+      mascota_id:       mascotaId,
+      tipo:             formD.tipo as "interna" | "externa" | "ambas",
+      producto:         formD.producto || null,
+      fecha_aplicacion: formD.fecha_aplicacion,
+      fecha_proxima:    formD.fecha_proxima || null,
+    });
     if (res.error) { toast.error(res.error); return; }
     toast.success("Desparasitación registrada");
     setMostrando(false);
@@ -147,7 +153,7 @@ export function TabVacunaciones({ mascotaId, vacunaciones, desparasitaciones }: 
                   </p>
                 </div>
                 {v.fecha_proxima && (
-                  <Badge variant={estaVencida(v.fecha_proxima) ? "destructive" : proxima(v.fecha_proxima) ? "secondary" : "outline"} className="text-xs shrink-0">
+                  <Badge variant={estaVencida(v.fecha_proxima) ? "error" : proxima(v.fecha_proxima) ? "aviso" : "muted"} className="text-xs shrink-0">
                     {estaVencida(v.fecha_proxima) && <AlertCircle className="size-3 mr-1" />}
                     Próx: {format(new Date(v.fecha_proxima), "d MMM yyyy", { locale: es })}
                   </Badge>
@@ -174,7 +180,7 @@ export function TabVacunaciones({ mascotaId, vacunaciones, desparasitaciones }: 
                   <p className="text-xs text-[var(--text-soft)]">{format(new Date(d.fecha_aplicacion), "d MMM yyyy", { locale: es })}</p>
                 </div>
                 {d.fecha_proxima && (
-                  <Badge variant={estaVencida(d.fecha_proxima) ? "destructive" : "outline"} className="text-xs shrink-0">
+                  <Badge variant={estaVencida(d.fecha_proxima) ? "error" : "muted"} className="text-xs shrink-0">
                     Próx: {format(new Date(d.fecha_proxima), "d MMM yyyy", { locale: es })}
                   </Badge>
                 )}

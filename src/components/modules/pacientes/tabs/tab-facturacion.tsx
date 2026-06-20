@@ -136,7 +136,7 @@ export function TabFacturacion({ paciente }: TabFacturacionProps) {
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Importe (€)</Label>
+              <Label>Importe (â‚¬)</Label>
               <Input
                 required
                 type="number"
@@ -160,7 +160,7 @@ export function TabFacturacion({ paciente }: TabFacturacionProps) {
                 </SelectContent>
               </Select>
               <p className="text-[11px] text-[var(--tinta-suave)]">
-                La factura se genera en tu sistema externo. Clinicomatic no almacena datos fiscales.
+                La factura se genera en tu sistema externo. Veteriblandenguer no almacena datos fiscales.
               </p>
             </div>
             <DialogFooter>

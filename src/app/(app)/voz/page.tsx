@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Header } from "@/components/layout/header";
 import { VozView } from "@/components/modules/voz/voz-view";
 
-export const metadata = { title: "Agente de voz — Clinicomatic" };
+export const metadata = { title: "Agente de voz — Veteriblandenguer" };
 
 export default async function VozPage() {
   const supabase = await createClient();

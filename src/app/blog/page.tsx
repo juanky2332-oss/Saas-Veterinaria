@@ -6,14 +6,14 @@ import { MarketingNav } from "@/components/marketing/nav";
 
 export const revalidate = 300;
 
-const base = process.env.NEXT_PUBLIC_APP_URL ?? "https://clinicomatic.app";
+const base = process.env.NEXT_PUBLIC_APP_URL ?? "https://Veteriblandenguer.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(base),
-  title: "Blog — Clinicomatic | Gestión y crecimiento para clínicas",
+  title: "Blog — Veteriblandenguer | Gestión y crecimiento para clínicas",
   description: "Guías prácticas sobre gestión de clínicas, normativa (Verifactu/TicketBAI), marketing sanitario y tecnología para clínicas estéticas, dentales y médicas.",
   alternates: { canonical: "/blog" },
-  openGraph: { title: "Blog de Clinicomatic", description: "Guías de gestión, normativa y marketing para clínicas.", url: `${base}/blog`, locale: "es_ES", type: "website" },
+  openGraph: { title: "Blog de Veteriblandenguer", description: "Guías de gestión, normativa y marketing para clínicas.", url: `${base}/blog`, locale: "es_ES", type: "website" },
 };
 
 const fecha = (iso: string | null) => (iso ? new Date(iso).toLocaleDateString("es-ES", { day: "2-digit", month: "long", year: "numeric" }) : "");

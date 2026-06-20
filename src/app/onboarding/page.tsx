@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getCurrentProfile } from "@/lib/auth/org";
 import { OnboardingForm } from "./onboarding-form";
 
-export const metadata = { title: "Crea tu clínica — Clinicomatic" };
+export const metadata = { title: "Crea tu clínica — Veteriblandenguer" };
 
 export default async function OnboardingPage() {
   const supabase = await createClient();

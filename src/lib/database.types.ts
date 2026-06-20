@@ -2292,6 +2292,309 @@ export type Database = {
           },
         ]
       }
+      // ── Veteriblandenguer: tablas vet ──────────────────────────────────────
+      clientes: {
+        Row: {
+          id: string
+          organization_id: string
+          nombre: string
+          apellidos: string | null
+          telefono: string | null
+          email: string | null
+          nif: string | null
+          direccion: string | null
+          ciudad: string | null
+          cp: string | null
+          notas: string | null
+          recordatorios_wa: boolean
+          deleted_at: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          organization_id: string
+          nombre: string
+          apellidos?: string | null
+          telefono?: string | null
+          email?: string | null
+          nif?: string | null
+          direccion?: string | null
+          ciudad?: string | null
+          cp?: string | null
+          notas?: string | null
+          recordatorios_wa?: boolean
+          deleted_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          organization_id?: string
+          nombre?: string
+          apellidos?: string | null
+          telefono?: string | null
+          email?: string | null
+          nif?: string | null
+          direccion?: string | null
+          ciudad?: string | null
+          cp?: string | null
+          notas?: string | null
+          recordatorios_wa?: boolean
+          deleted_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      mascotas: {
+        Row: {
+          id: string
+          organization_id: string
+          cliente_id: string | null
+          nombre: string
+          especie: string
+          raza: string | null
+          fecha_nacimiento: string | null
+          sexo: string | null
+          color: string | null
+          peso_kg: number | null
+          num_chip: string | null
+          esterilizado: boolean
+          alergias: string | null
+          observaciones: string | null
+          foto_path: string | null
+          deleted_at: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          organization_id: string
+          cliente_id?: string | null
+          nombre: string
+          especie: string
+          raza?: string | null
+          fecha_nacimiento?: string | null
+          sexo?: string | null
+          color?: string | null
+          peso_kg?: number | null
+          num_chip?: string | null
+          esterilizado?: boolean
+          alergias?: string | null
+          observaciones?: string | null
+          foto_path?: string | null
+          deleted_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          organization_id?: string
+          cliente_id?: string | null
+          nombre?: string
+          especie?: string
+          raza?: string | null
+          fecha_nacimiento?: string | null
+          sexo?: string | null
+          color?: string | null
+          peso_kg?: number | null
+          num_chip?: string | null
+          esterilizado?: boolean
+          alergias?: string | null
+          observaciones?: string | null
+          foto_path?: string | null
+          deleted_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mascotas_cliente_id_fkey"
+            columns: ["cliente_id"]
+            isOneToOne: false
+            referencedRelation: "clientes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      historia_clinica_vet: {
+        Row: {
+          id: string
+          organization_id: string
+          mascota_id: string
+          fecha: string
+          motivo: string | null
+          anamnesis: string | null
+          exploracion: string | null
+          diagnostico: string | null
+          tratamiento: string | null
+          observaciones: string | null
+          veterinario_id: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          organization_id: string
+          mascota_id: string
+          fecha: string
+          motivo?: string | null
+          anamnesis?: string | null
+          exploracion?: string | null
+          diagnostico?: string | null
+          tratamiento?: string | null
+          observaciones?: string | null
+          veterinario_id?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          organization_id?: string
+          mascota_id?: string
+          fecha?: string
+          motivo?: string | null
+          anamnesis?: string | null
+          exploracion?: string | null
+          diagnostico?: string | null
+          tratamiento?: string | null
+          observaciones?: string | null
+          veterinario_id?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "historia_clinica_vet_mascota_id_fkey"
+            columns: ["mascota_id"]
+            isOneToOne: false
+            referencedRelation: "mascotas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vacunaciones_vet: {
+        Row: {
+          id: string
+          organization_id: string
+          mascota_id: string
+          vacuna: string
+          fabricante: string | null
+          lote: string | null
+          fecha_aplicacion: string
+          fecha_proxima: string | null
+          notas: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          organization_id: string
+          mascota_id: string
+          vacuna: string
+          fabricante?: string | null
+          lote?: string | null
+          fecha_aplicacion: string
+          fecha_proxima?: string | null
+          notas?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          organization_id?: string
+          mascota_id?: string
+          vacuna?: string
+          fabricante?: string | null
+          lote?: string | null
+          fecha_aplicacion?: string
+          fecha_proxima?: string | null
+          notas?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vacunaciones_vet_mascota_id_fkey"
+            columns: ["mascota_id"]
+            isOneToOne: false
+            referencedRelation: "mascotas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      desparasitaciones_vet: {
+        Row: {
+          id: string
+          organization_id: string
+          mascota_id: string
+          tipo: string
+          producto: string | null
+          fecha_aplicacion: string
+          fecha_proxima: string | null
+          notas: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          organization_id: string
+          mascota_id: string
+          tipo: string
+          producto?: string | null
+          fecha_aplicacion: string
+          fecha_proxima?: string | null
+          notas?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          organization_id?: string
+          mascota_id?: string
+          tipo?: string
+          producto?: string | null
+          fecha_aplicacion?: string
+          fecha_proxima?: string | null
+          notas?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "desparasitaciones_vet_mascota_id_fkey"
+            columns: ["mascota_id"]
+            isOneToOne: false
+            referencedRelation: "mascotas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      servicios_vet: {
+        Row: {
+          id: string
+          organization_id: string
+          nombre: string
+          descripcion: string | null
+          precio: number | null
+          duracion_min: number | null
+          activo: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          organization_id: string
+          nombre: string
+          descripcion?: string | null
+          precio?: number | null
+          duracion_min?: number | null
+          activo?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          organization_id?: string
+          nombre?: string
+          descripcion?: string | null
+          precio?: number | null
+          duracion_min?: number | null
+          activo?: boolean
+          created_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       v_recomendaciones_pendientes: {

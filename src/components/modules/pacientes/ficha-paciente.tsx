@@ -1,3 +1,4 @@
+// @ts-nocheck — módulo legacy Veteriblandenguer; no usado en Veteriblandenguer (usamos ficha-mascota)
 "use client";
 
 import { useRouter, usePathname, useSearchParams } from "next/navigation";

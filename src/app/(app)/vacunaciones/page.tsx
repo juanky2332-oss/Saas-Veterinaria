@@ -32,7 +32,7 @@ export default async function VacunacionesPage() {
     const vencida = isBefore(new Date(fecha), hoy);
     const proxima = isBefore(new Date(fecha), addDays(hoy, 7));
     return (
-      <Badge variant={vencida ? "destructive" : proxima ? "secondary" : "outline"} className="text-xs">
+      <Badge variant={vencida ? "error" : proxima ? "aviso" : "muted"} className="text-xs">
         {vencida && <AlertCircle className="size-3 mr-1" />}
         {format(new Date(fecha), "d MMM yyyy", { locale: es })}
       </Badge>

@@ -1,7 +1,7 @@
-import type { MetadataRoute } from "next";
+﻿import type { MetadataRoute } from "next";
 import { createPublicClient } from "@/lib/supabase/server";
 
-const base = process.env.NEXT_PUBLIC_APP_URL ?? "https://clinicomatic.app";
+const base = process.env.NEXT_PUBLIC_APP_URL ?? "https://Veteriblandenguer.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();

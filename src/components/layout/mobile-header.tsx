@@ -10,7 +10,7 @@ import type { FeatureState } from "@/lib/features";
 import { visibleNavItems } from "./nav-items";
 
 export function MobileHeader({
-  clinicName = "Clinicomatic",
+  clinicName = "Veteriblandenguer",
   logoUrl = null,
   features,
 }: { clinicName?: string; logoUrl?: string | null; features?: Partial<FeatureState> } = {}) {

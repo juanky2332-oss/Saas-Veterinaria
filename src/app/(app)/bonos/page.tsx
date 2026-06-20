@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Header } from "@/components/layout/header";
 import { BonosView } from "@/components/modules/gestion/bonos-view";
 
-export const metadata = { title: "Bonos — Clinicomatic" };
+export const metadata = { title: "Bonos — Veteriblandenguer" };
 
 export default async function BonosPage() {
   const supabase = await createClient();

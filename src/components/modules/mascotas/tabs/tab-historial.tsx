@@ -83,7 +83,16 @@ export function TabHistorial({ mascotaId, historia }: Props) {
 
   async function guardar() {
     if (!form.fecha) { toast.error("Indica la fecha"); return; }
-    const res = await crearRegistroHistoria({ mascota_id: mascotaId, ...form });
+    const res = await crearRegistroHistoria({
+      mascota_id:    mascotaId,
+      fecha:         form.fecha,
+      motivo:        form.motivo || null,
+      anamnesis:     form.anamnesis || null,
+      exploracion:   form.exploracion || null,
+      diagnostico:   form.diagnostico || null,
+      tratamiento:   form.tratamiento || null,
+      observaciones: form.observaciones || null,
+    });
     if (res.error) { toast.error(res.error); return; }
     toast.success("Registro guardado");
     setForm(EMPTY);

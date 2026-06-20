@@ -3,7 +3,7 @@ import { ExternalLink, Code2 } from "lucide-react";
 import { getCurrentOrg } from "@/lib/auth/org";
 import { CopyField } from "@/components/configuracion/copy-field";
 
-export const metadata = { title: "Widget de reservas — Clinicomatic" };
+export const metadata = { title: "Widget de reservas — Veteriblandenguer" };
 
 const APP = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
