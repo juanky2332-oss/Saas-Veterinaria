@@ -3,7 +3,7 @@
 /* Las fuentes Plus Jakarta Sans y Nunito Sans se cargan vía next/font en layout.tsx.
    No usar @import url(google) aquí — Tailwind v4 expande @import "tailwindcss" primero. */
 
-/* ─────────── Tipografía, sombras y radios (no se re-tematizan) ─────────── */
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Tipografía, sombras y radios (no se re-tematizan) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @theme {
   --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-body: "Nunito Sans", system-ui, sans-serif;
@@ -17,7 +17,7 @@
   --radius-pill: 9999px;
 }
 
-/* ─────────── Color: utilidades Tailwind → variables temáticas ───────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Color: utilidades Tailwind â†’ variables temáticas â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    `@theme inline` hace que las utilidades (bg-brand, text-tinta, border-lino…)
    referencien directamente var(--…). Así, re-tematizar = redefinir las variables
    en :root (tema por defecto) o en un wrapper por tenant (multi-marca). */
@@ -65,48 +65,47 @@
   --color-tinta-suave: var(--tinta-suave);
 }
 
-/* ─────────── Tema por defecto: Clinicomatic (azul→índigo, glass clínico) ───────────
+/* ─────────── Tema por defecto: Veterinaria (verde prado + ámbar cálido) ───────────
    Re-tematizable por tenant: ver src/lib/theme/themes.ts. Un wrapper con
    estas mismas variables (p. ej. el shell de la app) sobreescribe la marca. */
 :root {
-  /* Marca — azul clínico → índigo */
-  --brand:        #3b82f6;
-  --brand-strong: #4f46e5;  /* hover/pressed / fin del degradado */
-  --brand-soft:   #818cf8;  /* acentos suaves (barras, gráficas) */
-  --brand-tint:   #e9eefc;  /* fondos de chip/badge */
-  --brand-deep:   #312e81;  /* cabeceras oscuras / degradado de marca */
+  /* Marca — verde prado / naturaleza */
+  --brand:        #2E8B57;  /* sea green — icónico veterinaria */
+  --brand-strong: #216640;  /* verde oscuro hover/pressed */
+  --brand-soft:   #6FB88A;  /* verde suave — acentos, barras */
+  --brand-tint:   #E4F5EC;  /* fondo chip/badge verde muy claro */
+  --brand-deep:   #0F3D23;  /* bosque oscuro — cabeceras */
 
-  /* Acento IA — violeta (índigo→violeta es el gradiente de IA) */
-  --accent:       #8b5cf6;
-  --accent-tint:  #f1ecfe;
-  --ai:           #6366f1;  /* color base de IA */
+  /* Acento — ámbar cálido (calidez animal) */
+  --accent:       #D97706;
+  --accent-tint:  #FEF3C7;
+  --ai:           #7C3AED;  /* violeta para IA */
 
-  /* Detalle premium (dosis mínima) */
-  --dorado:       #c2a05c;
+  /* Detalle dorado natural */
+  --dorado:       #B45309;
 
-  /* Superficies y neutros (luminosos, leve matiz azul-lavanda) */
-  --bg:           #f5f8ff;
-  --surface:      #ffffff;
-  --surface-2:    #eef2fb;
-  --border:       #e6ebf6;
-  --text-faint:   #94a3b8;
+  /* Superficies cálidas (sin tinte azul) */
+  --bg:           #F8FAF9;  /* blanco cálido con toque verde */
+  --surface:      #FFFFFF;
+  --surface-2:    #EFF5F2;  /* gris con tinte verde muy suave */
+  --border:       #D0E6D8;  /* borde verde claro */
+  --text-faint:   #8FA89A;
 
-  /* Texto (azul-tinta oscuro, nunca negro puro) */
-  --text:         #16223e;
-  --text-soft:    #647393;
+  /* Texto — bosque oscuro cálido */
+  --text:         #1A2E22;
+  --text-soft:    #4A6B57;
 
   /* Estados */
-  --exito: #10b981;  --exito-tint: #e7f8f1;
-  --aviso: #f59e0b;  --aviso-tint: #fef3e2;
-  --error: #f43f5e;  --error-tint: #fde8ec;
-  --info:  #3b82f6;  --info-tint:  #e7f0ff;
+  --exito: #16A34A;  --exito-tint: #DCFCE7;
+  --aviso: #D97706;  --aviso-tint: #FEF3C7;
+  --error: #DC2626;  --error-tint: #FEE2E2;
+  --info:  #0284C7;  --info-tint:  #E0F2FE;
 
-  /* Sombras suaves con matiz azul-tinta (para usos var() directos) */
-  --shadow-card: 0 1px 2px rgba(16,34,62,.04), 0 10px 30px -12px rgba(16,34,62,.12);
-  --shadow-pop:  0 18px 50px -16px rgba(16,34,62,.22);
+  /* Sombras con tono verde-bosque */
+  --shadow-card: 0 1px 2px rgba(26,46,34,.04), 0 10px 30px -12px rgba(26,46,34,.10);
+  --shadow-pop:  0 18px 50px -16px rgba(26,46,34,.18);
 
-  /* ── Alias heredados de Esse → capa semántica ──
-     Mantienen vivos los componentes que aún referencian var(--oliva), var(--crema)… */
+  /* ── Alias heredados → capa semántica ── */
   --crema:          var(--bg);
   --blanco-calido:  var(--surface);
   --arena:          var(--surface-2);
@@ -129,17 +128,17 @@
   background-clip: text;
   color: transparent;
 }
-/* Degradado de IA (índigo → violeta) */
-.gradient-ai { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); }
+/* Degradado de IA (violeta veterinario) */
+.gradient-ai { background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%); }
 
-/* Fondo luminoso multi-radial (azul/lavanda/menta) — base estética Clinicomatic.
+/* Fondo luminoso multi-radial (verde prado + ámbar cálido) — base estética Veteriblandenguer.
    Se usa en el shell de la app y en páginas públicas (vía body). */
 .app-bg {
   background-color: var(--bg);
   background-image:
-    radial-gradient(1100px 560px at 8% -8%, #e2ecff 0%, transparent 60%),
-    radial-gradient(1000px 520px at 96% 2%, #efe6ff 0%, transparent 55%),
-    radial-gradient(900px 600px at 60% 110%, #e6faf2 0%, transparent 55%);
+    radial-gradient(1100px 560px at 8% -8%, #CCE9D8 0%, transparent 60%),
+    radial-gradient(1000px 520px at 96% 2%, #FDEBD0 0%, transparent 55%),
+    radial-gradient(900px 600px at 60% 110%, #D4EDE0 0%, transparent 55%);
 }
 
 * {
@@ -156,9 +155,9 @@ body {
   color: var(--text);
   background-color: var(--bg);
   background-image:
-    radial-gradient(1100px 560px at 8% -8%, #e2ecff 0%, transparent 60%),
-    radial-gradient(1000px 520px at 96% 2%, #efe6ff 0%, transparent 55%),
-    radial-gradient(900px 600px at 60% 110%, #e6faf2 0%, transparent 55%);
+    radial-gradient(1100px 560px at 8% -8%, #CCE9D8 0%, transparent 60%),
+    radial-gradient(1000px 520px at 96% 2%, #FDEBD0 0%, transparent 55%),
+    radial-gradient(900px 600px at 60% 110%, #D4EDE0 0%, transparent 55%);
   background-attachment: fixed;
   min-height: 100dvh;
 }
@@ -183,7 +182,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .tabular-nums { font-variant-numeric: tabular-nums; }
 
-/* ──────────────── Animaciones ──────────────── */
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Animaciones â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @keyframes fade-in { from { opacity: 0 } to { opacity: 1 } }
 @keyframes slide-in-bottom { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: translateY(0) } }
 @keyframes slide-in-left   { from { opacity: 0; transform: translateX(-6px) } to { opacity: 1; transform: translateX(0) } }
@@ -207,7 +206,7 @@ h1, h2, h3, h4, h5, h6 {
 .duration-300  { animation-duration: 300ms }
 .duration-400  { animation-duration: 400ms }
 
-/* ──────────────── Capa de movimiento y pulido (moderna) ──────────────── */
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Capa de movimiento y pulido (moderna) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 /* Transiciones suaves por defecto en elementos interactivos */
 a, button, [role="button"], [role="tab"], [role="switch"], input, select, textarea, summary {
@@ -263,7 +262,7 @@ html { scroll-behavior: smooth; }
   html { scroll-behavior: auto !important; }
 }
 
-/* ──────────────── Impresión de documentos (facturas) ──────────────── */
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Impresión de documentos (facturas) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media print {
   body * { visibility: hidden; }
   .print-area, .print-area * { visibility: visible; }
