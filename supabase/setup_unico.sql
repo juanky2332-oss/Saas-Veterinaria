@@ -1,7 +1,7 @@
 -- Veteriblandenguer — Schema completo (ejecutar en Supabase SQL Editor)
 -- Este script usa COMMIT/BEGIN explícito para evitar el error 55P04 del ENUM
 
-﻿-- ============================================================
+-- ============================================================
 -- Veteriblandenguer — Setup completo de base de datos
 -- Ejecutar de una vez en Supabase SQL Editor
 -- Proyecto: wpizveklcchglpyaqhjt
