@@ -789,7 +789,9 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 -- (políticas RLS, función de alta) va en 20240003_multitenant.sql.
 -- =============================================================================
 
-ALTER TYPE rol_usuario RENAME VALUE 'doctora' TO 'profesional';
+DO $$ BEGIN
+  ALTER TYPE rol_usuario RENAME VALUE 'doctora' TO 'profesional';
+EXCEPTION WHEN OTHERS THEN NULL; END $$;
 ALTER TYPE rol_usuario ADD VALUE IF NOT EXISTS 'owner';
 ALTER TYPE rol_usuario ADD VALUE IF NOT EXISTS 'contable';
 
@@ -2260,5 +2262,8 @@ COMMENT ON TABLE historia_clinica_vet IS 'Registros por visita: exploración, di
 COMMENT ON TABLE vacunaciones_vet IS 'Vacunas administradas con fecha próxima para recordatorios.';
 COMMENT ON TABLE desparasitaciones_vet IS 'Tratamientos antiparasitarios con fecha próxima para recordatorios.';
 COMMENT ON TABLE servicios_vet IS 'Catálogo de servicios de la clínica con precio e IVA.';
+
+-- Confirmar transacción abierta en línea 801
+COMMIT;
 
 
