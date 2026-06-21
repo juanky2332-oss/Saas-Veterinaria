@@ -23,7 +23,6 @@ export default function SignupPage() {
   const [showPass, setShowPass]   = useState(false);
   const [loading, setLoading]     = useState(false);
   const router  = useRouter();
-  const supabase = createClient();
 
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault();
@@ -48,7 +47,7 @@ export default function SignupPage() {
     }
 
     // Login inmediato tras crear la cuenta
-    const { error: loginError } = await supabase.auth.signInWithPassword({ email, password });
+    const { error: loginError } = await createClient().auth.signInWithPassword({ email, password });
     if (loginError) {
       toast.error("Cuenta creada pero no se pudo iniciar sesión. Intenta entrar manualmente.");
       router.push("/login");

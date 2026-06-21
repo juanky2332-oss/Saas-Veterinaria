@@ -28,12 +28,11 @@ function LoginInner() {
   const router = useRouter();
   const params = useSearchParams();
   const next   = params.get("next") || "/dashboard";
-  const supabase = createClient();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await createClient().auth.signInWithPassword({ email, password });
     if (error) {
       toast.error("Credenciales incorrectas. Revisa tu email y contraseña.");
       setLoading(false);
@@ -46,7 +45,7 @@ function LoginInner() {
   async function handleMagicLink(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    const { error } = await supabase.auth.signInWithOtp({
+    const { error } = await createClient().auth.signInWithOtp({
       email,
       options: {
         emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
