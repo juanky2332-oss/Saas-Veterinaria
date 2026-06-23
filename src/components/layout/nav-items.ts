@@ -16,6 +16,10 @@ import {
   BarChart3,
   Handshake,
   Stethoscope,
+  Gift,
+  RefreshCw,
+  Shield,
+  TrendingUp,
 } from "lucide-react";
 import type { FeatureKey, FeatureState } from "@/lib/features";
 
@@ -35,27 +39,31 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   // ── Clínica ──
-  { href: "/dashboard",     label: "Dashboard",        shortLabel: "Inicio",  icon: LayoutDashboard, seccion: "Clínica" },
-  { href: "/mascotas",      label: "Mascotas",                                icon: PawPrint,        seccion: "Clínica" },
-  { href: "/clientes",      label: "Clientes",         shortLabel: "Clientes",icon: Users,           feature: "clientes",          seccion: "Clínica" },
-  { href: "/agenda",        label: "Agenda",                                   icon: CalendarDays,    feature: "agenda",            seccion: "Clínica" },
-  { href: "/vacunaciones",  label: "Vacunaciones",                             icon: Syringe,         feature: "vacunaciones",      seccion: "Clínica", secundario: true },
-  { href: "/desparasitaciones", label: "Desparasitaciones",                    icon: Bug,             feature: "desparasitaciones", seccion: "Clínica", secundario: true },
-  { href: "/historia-clinica",  label: "Historia clínica",                     icon: ClipboardList,   feature: "historia_clinica",  seccion: "Clínica", secundario: true },
-  { href: "/recetas",       label: "Recetas",                                  icon: Pill,            feature: "recetas",           seccion: "Clínica", secundario: true },
+  { href: "/dashboard",         label: "Dashboard",          shortLabel: "Inicio",   icon: LayoutDashboard, seccion: "Clínica" },
+  { href: "/mascotas",          label: "Mascotas",                                    icon: PawPrint,        seccion: "Clínica" },
+  { href: "/clientes",          label: "Clientes",           shortLabel: "Clientes", icon: Users,           feature: "clientes",          seccion: "Clínica" },
+  { href: "/agenda",            label: "Agenda",                                     icon: CalendarDays,    feature: "agenda",            seccion: "Clínica" },
+  { href: "/vacunaciones",      label: "Vacunaciones",                               icon: Syringe,         feature: "vacunaciones",      seccion: "Clínica", secundario: true },
+  { href: "/desparasitaciones", label: "Desparasitaciones",                          icon: Bug,             feature: "desparasitaciones", seccion: "Clínica", secundario: true },
+  { href: "/historia-clinica",  label: "Historia clínica",                           icon: ClipboardList,   feature: "historia_clinica",  seccion: "Clínica", secundario: true },
+  { href: "/recetas",           label: "Recetas",                                    icon: Pill,            feature: "recetas",           seccion: "Clínica", secundario: true },
   // ── Comunicación ──
-  { href: "/whatsapp",      label: "WhatsApp",         shortLabel: "Chat",    icon: MessageCircle,   feature: "whatsapp",          seccion: "Comunicación" },
+  { href: "/whatsapp",          label: "WhatsApp",           shortLabel: "Chat",    icon: MessageCircle,   feature: "whatsapp",          seccion: "Comunicación" },
+  { href: "/crm",               label: "CRM",                shortLabel: "CRM",     icon: TrendingUp,      feature: "crm",               seccion: "Comunicación", secundario: true },
   // ── Finanzas ──
-  { href: "/presupuestos",  label: "Presupuestos",                             icon: FileText,        feature: "presupuestos",      seccion: "Finanzas" },
-  { href: "/facturacion",   label: "Facturación",                              icon: Receipt,         feature: "facturacion",       seccion: "Finanzas" },
-  { href: "/caja",          label: "Caja",                                     icon: Wallet,          feature: "caja",              seccion: "Finanzas" },
+  { href: "/presupuestos",      label: "Presupuestos",                               icon: FileText,        feature: "presupuestos",      seccion: "Finanzas" },
+  { href: "/facturacion",       label: "Facturación",                                icon: Receipt,         feature: "facturacion",       seccion: "Finanzas" },
+  { href: "/caja",              label: "Caja",                                       icon: Wallet,          feature: "caja",              seccion: "Finanzas" },
+  { href: "/bonos",             label: "Bonos",                                      icon: Gift,            feature: "bonos",             seccion: "Finanzas", secundario: true },
+  { href: "/cuotas",            label: "Cuotas",                                     icon: RefreshCw,       feature: "cuotas",            seccion: "Finanzas", secundario: true },
+  { href: "/mutuas",            label: "Mutuas",                                     icon: Shield,          feature: "mutuas",            seccion: "Finanzas", secundario: true },
   // ── Gestión ──
-  { href: "/configuracion/tratamientos", label: "Servicios", shortLabel: "Servicios", icon: Stethoscope, seccion: "Gestión", secundario: true },
-  { href: "/inventario",    label: "Inventario",                               icon: Package,         feature: "inventario",        seccion: "Gestión" },
-  { href: "/proveedores",   label: "Proveedores",                              icon: Truck,           feature: "proveedores",       seccion: "Gestión", secundario: true },
+  { href: "/configuracion/tratamientos", label: "Servicios", shortLabel: "Servicios", icon: Stethoscope,   seccion: "Gestión", secundario: true },
+  { href: "/inventario",        label: "Inventario",                                 icon: Package,         feature: "inventario",        seccion: "Gestión" },
+  { href: "/proveedores",       label: "Proveedores",                                icon: Truck,           feature: "proveedores",       seccion: "Gestión", secundario: true },
   // ── Análisis ──
-  { href: "/analitica",     label: "Analítica",                                icon: BarChart3,       feature: "analitica",         seccion: "Análisis" },
-  { href: "/afiliados",     label: "Afiliados",                                icon: Handshake,       seccion: "Análisis",          secundario: true },
+  { href: "/analitica",         label: "Analítica",                                  icon: BarChart3,       feature: "analitica",         seccion: "Análisis" },
+  { href: "/afiliados",         label: "Afiliados",                                  icon: Handshake,       seccion: "Análisis",          secundario: true },
 ];
 
 export function visibleNavItems(features?: Partial<FeatureState>): NavItem[] {
