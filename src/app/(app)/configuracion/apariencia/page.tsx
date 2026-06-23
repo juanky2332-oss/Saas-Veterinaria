@@ -1,7 +1,7 @@
 import { getCurrentOrg } from "@/lib/auth/org";
 import { AparienciaClient } from "./apariencia-client";
 
-export const metadata = { title: "Apariencia — Veteriblandenguer" };
+export const metadata = { title: "Apariencia — VetClinic" };
 
 export default async function AparienciaPage() {
   const org = await getCurrentOrg();
@@ -12,7 +12,7 @@ export default async function AparienciaPage() {
       <div className="mb-6">
         <h1 className="font-display text-2xl font-bold text-[var(--text)]">Apariencia</h1>
         <p className="mt-1 text-sm text-[var(--text-soft)]">
-          Personaliza Veteriblandenguer con la identidad de tu clínica: tema, colores y logo.
+          Personaliza la app con la identidad de tu clínica: tema, colores y logo.
         </p>
       </div>
       <AparienciaClient

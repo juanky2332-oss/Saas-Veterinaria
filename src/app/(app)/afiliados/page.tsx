@@ -4,7 +4,7 @@ import { planNombre } from "@/lib/plans";
 import { AfiliadoRegistro } from "./afiliado-registro";
 import { AfiliadoPanel, type Referido, type Payout } from "./afiliado-panel";
 
-export const metadata = { title: "Programa de afiliados — Veteriblandenguer" };
+export const metadata = { title: "Programa de afiliados — VetClinic" };
 export const dynamic = "force-dynamic";
 
 export default async function AfiliadosPage() {
@@ -33,7 +33,6 @@ export default async function AfiliadosPage() {
 
   const referidos: Referido[] = (refRes.data ?? []).map((r) => ({
     id: r.id,
-    // Privacidad: al afiliado no se le muestra el nombre de la clínica referida, solo el plan/estado.
     plan: r.plan ?? (r.organization_id ? orgInfo.get(r.organization_id)?.plan ?? "—" : "—"),
     estado: r.estado,
     comision: Number(r.comision),

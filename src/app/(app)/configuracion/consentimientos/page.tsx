@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getCurrentOrg } from "@/lib/auth/org";
 import { ConsentimientosClient } from "./consentimientos-client";
 
-export const metadata = { title: "Consentimientos — Veteriblandenguer" };
+export const metadata = { title: "Consentimientos — VetClinic" };
 
 export default async function ConsentimientosPage() {
   const supabase = await createClient();

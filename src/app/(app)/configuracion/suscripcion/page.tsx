@@ -4,7 +4,7 @@ import { ManageSubscriptionButton } from "./manage-button";
 import { PLANS, hasActiveSubscription } from "@/lib/plans";
 import { Badge } from "@/components/ui/badge";
 
-export const metadata = { title: "Suscripción — Veteriblandenguer" };
+export const metadata = { title: "Suscripción — VetClinic" };
 
 const ESTADO: Record<string, { label: string; variant: "exito" | "aviso" | "error" | "muted" }> = {
   active: { label: "Activa", variant: "exito" },
@@ -30,7 +30,7 @@ export default async function SuscripcionPage() {
     <div className="mx-auto max-w-5xl px-5 py-8 space-y-8">
       <div>
         <h1 className="font-display text-2xl font-bold text-[var(--text)]">Suscripción</h1>
-        <p className="mt-1 text-sm text-[var(--text-soft)]">Gestiona el plan de tu clínica y la facturación de Veteriblandenguer.</p>
+        <p className="mt-1 text-sm text-[var(--text-soft)]">Gestiona el plan de tu clínica y los datos de facturación.</p>
       </div>
 
       <div className="rounded-[16px] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[var(--shadow-card)]">

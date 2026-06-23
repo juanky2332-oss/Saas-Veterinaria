@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Header } from "@/components/layout/header";
 import { TratamientosCatalogo } from "@/components/modules/tratamientos/tratamientos-catalogo";
 
-export const metadata = { title: "Catálogo de tratamientos — Veteriblandenguer" };
+export const metadata = { title: "Catálogo de tratamientos — VetClinic" };
 
 export default async function TratamientosPage() {
   const supabase = await createClient();

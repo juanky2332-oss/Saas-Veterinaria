@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Users, CreditCard, Code2, Stethoscope, Upload, ChevronRight, Palette, MessageCircle, KeyRound, SlidersHorizontal, PhoneCall, ShieldCheck, FileSignature } from "lucide-react";
 import { getCurrentOrg } from "@/lib/auth/org";
 
-export const metadata = { title: "Configuración — Veteriblandenguer" };
+export const metadata = { title: "Configuración — VetClinic" };
 
 const SECCIONES = [
   { href: "/configuracion/funciones", icon: SlidersHorizontal, t: "Funciones de la clínica", d: "Activa o desactiva módulos y secciones según tu especialidad." },
@@ -11,7 +11,7 @@ const SECCIONES = [
   { href: "/configuracion/voz", icon: PhoneCall, t: "Agente de voz", d: "Recepcionista telefónica con IA (Retell + Twilio)." },
   { href: "/configuracion/verifactu", icon: ShieldCheck, t: "Verifactu / TicketBAI", d: "Conecta Verifacti para facturas verificables ante la AEAT." },
   { href: "/configuracion/equipo", icon: Users, t: "Equipo y roles", d: "Invita a tu equipo y gestiona permisos." },
-  { href: "/configuracion/suscripcion", icon: CreditCard, t: "Suscripción", d: "Plan, facturación y datos de pago de Veteriblandenguer." },
+  { href: "/configuracion/suscripcion", icon: CreditCard, t: "Suscripción", d: "Plan, facturación y datos de pago de tu clínica." },
   { href: "/configuracion/widget", icon: Code2, t: "Widget de reservas", d: "Incrusta el formulario de reservas en tu web." },
   { href: "/configuracion/api", icon: KeyRound, t: "API y desarrolladores", d: "Genera claves para integrar otras aplicaciones." },
   { href: "/configuracion/tratamientos", icon: Stethoscope, t: "Tratamientos", d: "Catálogo de tratamientos y periodicidades." },

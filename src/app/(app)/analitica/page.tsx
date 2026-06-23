@@ -3,7 +3,7 @@ import { TrendingUp, TrendingDown, Users, CalendarDays, Receipt, AlertTriangle }
 import { createClient } from "@/lib/supabase/server";
 import { BarsChart, DonutChart, HBarsChart, type SerieMes } from "@/components/charts/charts";
 
-export const metadata = { title: "Analítica — Veteriblandenguer" };
+export const metadata = { title: "Analítica — VetClinic" };
 
 const eur = (n: number) => new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" }).format(n);
 const MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
@@ -51,7 +51,7 @@ export default async function AnaliticaPage() {
   const meses = ultimos12Meses();
   const idxMes = new Map(meses.map((m, i) => [m.clave, i]));
 
-  // â”€â”€ Facturación por mes (emitidas/pagadas/vencidas; excluye borradores y anuladas) â”€â”€
+  // ── Facturación por mes (emitidas/pagadas/vencidas; excluye borradores y anuladas) ──
   const factPorMes: SerieMes[] = meses.map((m) => ({ label: m.label, value: 0 }));
   let pendiente = 0;
   let vencido = 0;
@@ -74,7 +74,7 @@ export default async function AnaliticaPage() {
     ? totalAno / facturas.filter((f) => f.estado !== "borrador" && f.estado !== "anulada").length
     : 0;
 
-  // â”€â”€ Citas por estado + por mes â”€â”€
+  // ── Citas por estado + por mes ──
   const estados: Record<string, number> = {};
   const citasPorMes: SerieMes[] = meses.map((m) => ({ label: m.label, value: 0 }));
   const porTratamiento: Record<string, number> = {};
@@ -93,7 +93,7 @@ export default async function AnaliticaPage() {
     .slice(0, 6)
     .map(([label, value]) => ({ label, value }));
 
-  // â”€â”€ Pacientes nuevos por mes â”€â”€
+  // ── Pacientes nuevos por mes ──
   const pacPorMes: SerieMes[] = meses.map((m) => ({ label: m.label, value: 0 }));
   for (const p of pacientes) {
     const i = idxMes.get(claveMes(new Date(p.created_at)));
@@ -110,7 +110,7 @@ export default async function AnaliticaPage() {
       deltaPos: delta === null ? null : delta >= 0,
     },
     { icon: TrendingUp, label: "Facturado (12 meses)", value: eur(totalAno), sub: `Ticket medio ${eur(ticketMedio)}` },
-    { icon: AlertTriangle, label: "Pendiente de cobro", value: eur(pendiente + vencido), sub: vencido > 0 ? `${eur(vencido)} ya vencido` : "Nada vencido ðŸŽ‰" },
+    { icon: AlertTriangle, label: "Pendiente de cobro", value: eur(pendiente + vencido), sub: vencido > 0 ? `${eur(vencido)} ya vencido` : "Nada vencido 🎉" },
     { icon: CalendarDays, label: "Citas (12 meses)", value: String(totalCitas), sub: `${noShowPct}% de ausencias` },
     { icon: Users, label: "Pacientes nuevos este mes", value: String(pacEsteMes), sub: `${pacientes.length} en 12 meses` },
   ];
@@ -182,11 +182,11 @@ export default async function AnaliticaPage() {
         </div>
       </div>
 
-      {/* Ãšltimas facturas */}
+      {/* Últimas facturas */}
       <div className="overflow-x-auto rounded-[16px] border border-[var(--border)] bg-[var(--surface)] shadow-[var(--shadow-card)]">
         <div className="flex items-center justify-between px-5 pt-4">
-          <h2 className="font-display font-semibold text-[var(--text)]">Ãšltimas facturas</h2>
-          <Link href="/facturacion" className="text-xs font-semibold text-[var(--brand)] hover:underline">Ver todas â†’</Link>
+          <h2 className="font-display font-semibold text-[var(--text)]">Últimas facturas</h2>
+          <Link href="/facturacion" className="text-xs font-semibold text-[var(--brand)] hover:underline">Ver todas →</Link>
         </div>
         {ultimasFacturas.length === 0 ? (
           <p className="px-5 py-8 text-center text-sm text-[var(--text-soft)]">Todavía no hay facturas. Crea la primera desde Facturación.</p>
