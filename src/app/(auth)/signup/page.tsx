@@ -18,11 +18,11 @@ const PERKS = [
 ];
 
 export default function SignupPage() {
-  const [email, setEmail]         = useState("");
-  const [password, setPassword]   = useState("");
-  const [showPass, setShowPass]   = useState(false);
-  const [loading, setLoading]     = useState(false);
-  const router  = useRouter();
+  const [email, setEmail]       = useState("");
+  const [password, setPassword] = useState("");
+  const [showPass, setShowPass] = useState(false);
+  const [loading, setLoading]   = useState(false);
+  const router = useRouter();
 
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault();
@@ -33,44 +33,41 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+      const supabase = createClient();
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=/onboarding`,
+        },
       });
 
-      let json: { error?: string; userId?: string } = {};
-      try {
-        json = await res.json();
-      } catch {
-        toast.error("Error de conexión. Inténtalo de nuevo.");
+      if (error) {
+        toast.error(
+          error.message === "User already registered"
+            ? "Ese correo ya tiene cuenta. Inicia sesión."
+            : error.message ?? "No se pudo crear la cuenta."
+        );
         setLoading(false);
         return;
       }
 
-      if (!res.ok) {
-        toast.error(json.error ?? "No se pudo crear la cuenta.");
+      if (data.session) {
+        // Confirmación de email desactivada — sesión inmediata
+        router.push("/onboarding");
+      } else {
+        // Confirmación de email activada — avisar al usuario
+        toast.success("Cuenta creada. Revisa tu email y haz clic en el enlace para acceder.");
         setLoading(false);
-        return;
       }
-
-      const { error: loginError } = await createClient().auth.signInWithPassword({ email, password });
-      if (loginError) {
-        toast.error("Cuenta creada pero no se pudo iniciar sesión. Intenta entrar manualmente.");
-        router.push("/login");
-        return;
-      }
-
-      router.push("/onboarding");
     } catch {
-      toast.error("Error inesperado. Inténtalo de nuevo.");
+      toast.error("Error de conexión. Inténtalo de nuevo.");
       setLoading(false);
     }
   }
 
   return (
     <div className="min-h-dvh flex">
-      {/* Panel izquierdo */}
       <div className="hidden lg:flex lg:w-[46%] flex-col justify-between p-12 relative overflow-hidden" style={{ background: "linear-gradient(145deg, #0F3D23 0%, #1A5C37 50%, #2E8B57 100%)" }}>
         <div className="absolute top-0 right-0 w-80 h-80 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #6FB88A, transparent)", transform: "translate(30%, -30%)" }} />
         <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #D97706, transparent)", transform: "translate(-30%, 30%)" }} />
@@ -123,7 +120,6 @@ export default function SignupPage() {
         </div>
       </div>
 
-      {/* Panel derecho */}
       <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 bg-[var(--bg)]">
         <div className="lg:hidden mb-8">
           <Link href="/" className="inline-flex items-center gap-2.5">
@@ -140,42 +136,20 @@ export default function SignupPage() {
               <PawPrint size={12} /> 10 días gratis · sin tarjeta
             </span>
             <h1 className="font-display text-2xl font-extrabold text-[var(--text)]">Crea tu veterinaria</h1>
-            <p className="mt-1.5 text-sm text-[var(--text-soft)]">Empieza gratis hoy. Acceso inmediato, sin confirmar email.</p>
+            <p className="mt-1.5 text-sm text-[var(--text-soft)]">Empieza gratis hoy. Acceso inmediato.</p>
           </div>
 
           <div className="rounded-[18px] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[var(--shadow-card)]">
             <form onSubmit={handleSignup} className="space-y-4">
               <div className="space-y-1.5">
                 <Label htmlFor="email">Correo electrónico</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="tu@veterinaria.com"
-                />
+                <Input id="email" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="tu@veterinaria.com" />
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="password">Contraseña</Label>
                 <div className="relative">
-                  <Input
-                    id="password"
-                    type={showPass ? "text" : "password"}
-                    autoComplete="new-password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Mínimo 8 caracteres"
-                    className="pr-10"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPass((v) => !v)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-faint)] hover:text-[var(--text-soft)] transition-colors"
-                    tabIndex={-1}
-                  >
+                  <Input id="password" type={showPass ? "text" : "password"} autoComplete="new-password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Mínimo 8 caracteres" className="pr-10" />
+                  <button type="button" onClick={() => setShowPass((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-faint)] hover:text-[var(--text-soft)] transition-colors" tabIndex={-1}>
                     {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
                 </div>
@@ -191,9 +165,7 @@ export default function SignupPage() {
 
           <p className="mt-6 text-center text-sm text-[var(--text-soft)]">
             ¿Ya tienes cuenta?{" "}
-            <Link href="/login" className="font-semibold text-[var(--brand)] hover:underline">
-              Inicia sesión
-            </Link>
+            <Link href="/login" className="font-semibold text-[var(--brand)] hover:underline">Inicia sesión</Link>
           </p>
         </div>
       </div>
