@@ -32,30 +32,40 @@ export default function SignupPage() {
     }
     setLoading(true);
 
-    // Crear usuario con email pre-confirmado (sin necesidad de clic en email)
-    const res = await fetch("/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-    const json = await res.json();
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (!res.ok) {
-      toast.error(json.error ?? "No se pudo crear la cuenta.");
+      let json: { error?: string; userId?: string } = {};
+      try {
+        json = await res.json();
+      } catch {
+        toast.error("Error de conexión. Inténtalo de nuevo.");
+        setLoading(false);
+        return;
+      }
+
+      if (!res.ok) {
+        toast.error(json.error ?? "No se pudo crear la cuenta.");
+        setLoading(false);
+        return;
+      }
+
+      const { error: loginError } = await createClient().auth.signInWithPassword({ email, password });
+      if (loginError) {
+        toast.error("Cuenta creada pero no se pudo iniciar sesión. Intenta entrar manualmente.");
+        router.push("/login");
+        return;
+      }
+
+      router.push("/onboarding");
+    } catch {
+      toast.error("Error inesperado. Inténtalo de nuevo.");
       setLoading(false);
-      return;
     }
-
-    // Login inmediato tras crear la cuenta
-    const { error: loginError } = await createClient().auth.signInWithPassword({ email, password });
-    if (loginError) {
-      toast.error("Cuenta creada pero no se pudo iniciar sesión. Intenta entrar manualmente.");
-      router.push("/login");
-      return;
-    }
-
-    router.push("/onboarding");
-    router.refresh();
   }
 
   return (
@@ -70,7 +80,7 @@ export default function SignupPage() {
             <span className="flex h-11 w-11 items-center justify-center rounded-[13px] bg-white/15 backdrop-blur border border-white/20">
               <PawPrint size={22} className="text-white" strokeWidth={2} />
             </span>
-            <span className="text-2xl font-display font-extrabold text-white">Veteriblandenguer</span>
+            <span className="text-2xl font-display font-extrabold text-white">VetClinic</span>
           </Link>
         </div>
 
@@ -120,7 +130,7 @@ export default function SignupPage() {
             <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[var(--brand)] text-white shadow-[var(--shadow-card)]">
               <PawPrint size={20} strokeWidth={2} />
             </span>
-            <span className="text-2xl font-display font-bold text-[var(--text)]">Veteriblandenguer</span>
+            <span className="text-2xl font-display font-bold text-[var(--text)]">VetClinic</span>
           </Link>
         </div>
 

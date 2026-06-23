@@ -32,32 +32,41 @@ function LoginInner() {
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    const { error } = await createClient().auth.signInWithPassword({ email, password });
-    if (error) {
-      toast.error("Credenciales incorrectas. Revisa tu email y contraseña.");
+    try {
+      const { error } = await createClient().auth.signInWithPassword({ email, password });
+      if (error) {
+        toast.error("Credenciales incorrectas. Revisa tu email y contraseña.");
+        setLoading(false);
+        return;
+      }
+      router.push(next);
+    } catch {
+      toast.error("Error de conexión. Inténtalo de nuevo.");
       setLoading(false);
-      return;
     }
-    router.push(next);
-    router.refresh();
   }
 
   async function handleMagicLink(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    const { error } = await createClient().auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
-      },
-    });
-    if (error) {
-      toast.error("No hemos podido enviar el enlace. Inténtalo de nuevo.");
+    try {
+      const { error } = await createClient().auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
+        },
+      });
+      if (error) {
+        toast.error("No hemos podido enviar el enlace. Inténtalo de nuevo.");
+        setLoading(false);
+        return;
+      }
+      setMagicEnviado(true);
       setLoading(false);
-      return;
+    } catch {
+      toast.error("Error de conexión. Inténtalo de nuevo.");
+      setLoading(false);
     }
-    setMagicEnviado(true);
-    setLoading(false);
   }
 
   return (
@@ -74,7 +83,7 @@ function LoginInner() {
             <span className="flex h-11 w-11 items-center justify-center rounded-[13px] bg-white/15 backdrop-blur text-white text-xl font-display font-extrabold border border-white/20">
               V
             </span>
-            <span className="text-2xl font-display font-extrabold text-white">Veteriblandenguer</span>
+            <span className="text-2xl font-display font-extrabold text-white">VetClinic</span>
           </Link>
         </div>
 
@@ -134,7 +143,7 @@ function LoginInner() {
             <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[var(--brand)] text-white text-xl font-display font-bold shadow-[var(--shadow-card)]">
               V
             </span>
-            <span className="text-2xl font-display font-bold text-[var(--text)]">Veteriblandenguer</span>
+            <span className="text-2xl font-display font-bold text-[var(--text)]">VetClinic</span>
           </Link>
         </div>
 
