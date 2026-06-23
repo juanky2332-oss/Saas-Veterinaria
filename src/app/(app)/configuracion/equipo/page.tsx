@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { EquipoClient } from "./equipo-client";
 
-export const metadata = { title: "Equipo — Veteriblandenguer" };
+export const metadata = { title: "Equipo — VetClinic" };
 
 export default async function EquipoPage() {
   const supabase = await createClient();
