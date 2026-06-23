@@ -7,7 +7,7 @@ import Link from "next/link";
 import { format, isBefore, addDays } from "date-fns";
 import { es } from "date-fns/locale";
 
-export const metadata = { title: "Vacunaciones — Veteriblandenguer" };
+export const metadata = { title: "Vacunaciones — VetClinic" };
 
 export default async function VacunacionesPage() {
   const supabase = await createClient();

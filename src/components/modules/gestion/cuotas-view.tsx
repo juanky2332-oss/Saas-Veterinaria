@@ -14,40 +14,81 @@ interface Cuota {
   patient?: { nombre: string; apellidos: string } | null;
 }
 
-const eur = (n: number) => new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" }).format(n);
-const fecha = (s: string | null) => (s ? new Date(s + "T00:00:00").toLocaleDateString("es-ES") : "—");
+const eur = (n: number) =>
+  new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" }).format(n);
+const fecha = (s: string | null) =>
+  s ? new Date(s + "T00:00:00").toLocaleDateString("es-ES") : "—";
 
-export function CuotasView({ rows, pacientes }: { rows: Cuota[]; pacientes: { value: string; label: string }[] }) {
+export function CuotasView({
+  rows,
+  pacientes,
+}: {
+  rows: Cuota[];
+  pacientes: { value: string; label: string }[];
+}) {
   const CAMPOS: CampoCrud[] = [
-    { name: "concepto", label: "Concepto", required: true, ancho: "full", placeholder: "p. ej. Tarifa plana fisioterapia" },
+    {
+      name: "concepto",
+      label: "Concepto",
+      required: true,
+      ancho: "full",
+      placeholder: "p. ej. Plan de salud mensual",
+    },
     { name: "importe", label: "Importe (€)", type: "number", required: true, placeholder: "0,00" },
     {
       name: "periodicidad",
       label: "Periodicidad",
       type: "select",
       options: [
-        { value: "mensual", label: "Mensual" },
-        { value: "trimestral", label: "Trimestral" },
-        { value: "anual", label: "Anual" },
+        { value: "mensual",      label: "Mensual" },
+        { value: "trimestral",   label: "Trimestral" },
+        { value: "anual",        label: "Anual" },
       ],
     },
     { name: "proximo_cobro", label: "Próximo cobro", type: "date" },
-    { name: "metodo", label: "Método", placeholder: "Domiciliación, tarjeta…" },
-    { name: "patient_id", label: "Paciente (opcional)", type: "select", options: pacientes },
+    { name: "metodo", label: "Método de pago", placeholder: "Domiciliación, tarjeta, efectivo…" },
+    {
+      name: "patient_id",
+      label: "Paciente / propietario (opcional)",
+      type: "select",
+      options: pacientes,
+    },
   ];
 
   const COLS: ColumnaCrud<Cuota>[] = [
-    { key: "concepto", label: "Concepto", render: (r) => <span className="font-semibold">{r.concepto}</span> },
-    { key: "paciente", label: "Paciente", render: (r) => (r.patient ? `${r.patient.nombre} ${r.patient.apellidos}` : "—") },
-    { key: "periodicidad", label: "Periodicidad", render: (r) => <span className="capitalize">{r.periodicidad}</span> },
-    { key: "proximo_cobro", label: "Próximo cobro", render: (r) => fecha(r.proximo_cobro) },
-    { key: "importe", label: "Importe", alinear: "right", render: (r) => eur(Number(r.importe)) },
+    {
+      key: "concepto",
+      label: "Concepto",
+      render: (r) => <span className="font-semibold">{r.concepto}</span>,
+    },
+    {
+      key: "paciente",
+      label: "Paciente",
+      render: (r) =>
+        r.patient ? `${r.patient.nombre} ${r.patient.apellidos}` : "—",
+    },
+    {
+      key: "periodicidad",
+      label: "Periodicidad",
+      render: (r) => <span className="capitalize">{r.periodicidad}</span>,
+    },
+    {
+      key: "proximo_cobro",
+      label: "Próximo cobro",
+      render: (r) => fecha(r.proximo_cobro),
+    },
+    {
+      key: "importe",
+      label: "Importe",
+      alinear: "right",
+      render: (r) => eur(Number(r.importe)),
+    },
   ];
 
   return (
     <EntidadCrud
       titulo="Cuotas recurrentes"
-      descripcion="Cobros periódicos: tarifas planas, bonos mensuales, mantenimientos…"
+      descripcion="Cobros periódicos: planes de salud, mantenimientos, tarifas planas…"
       addLabel="Nueva cuota"
       rows={rows}
       campos={CAMPOS}

@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Header } from "@/components/layout/header";
 import { MascotasLista } from "@/components/modules/mascotas/mascotas-lista";
 
-export const metadata = { title: "Mascotas — Veteriblandenguer" };
+export const metadata = { title: "Mascotas — VetClinic" };
 
 export default async function MascotasPage() {
   const supabase = await createClient();

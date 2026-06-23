@@ -4,7 +4,7 @@ import { Header } from "@/components/layout/header";
 import { Pill, Printer, ChevronRight } from "lucide-react";
 import { formatFecha } from "@/lib/utils";
 
-export const metadata = { title: "Recetas — Veteriblandenguer" };
+export const metadata = { title: "Recetas — VetClinic" };
 
 export default async function RecetasPage() {
   const supabase = await createClient();

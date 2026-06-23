@@ -3,12 +3,11 @@ import { getOrgIdOrNull } from "@/lib/auth/org";
 import { Header } from "@/components/layout/header";
 import { CrmKanban, type Stage, type Opportunity } from "@/components/modules/crm/crm-kanban";
 
-export const metadata = { title: "CRM — Veteriblandenguer" };
+export const metadata = { title: "CRM — VetClinic" };
 
 export default async function CrmPage() {
   const supabase = await createClient();
 
-  // Asegurar pipeline por defecto (clínicas creadas antes de la v2)
   let { data: pipeline } = await supabase.from("crm_pipelines").select("id, nombre").limit(1).maybeSingle();
   if (!pipeline) {
     const orgId = await getOrgIdOrNull();
